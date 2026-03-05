@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
+    "typegen": "sanity schema extract --enforce-required-fields --path=./src/sanity/extract.json && sanity typegen generate",
+    "predev": "npm run typegen",
+    "prebuild": "npm run typegen",
     "test": "vitest"
   },
   "dependencies": {
@@ -21,6 +24,9 @@
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -29,6 +35,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "^10.1.8",
+    "jsdom": "^28.1.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
