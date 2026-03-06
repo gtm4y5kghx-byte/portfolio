@@ -28,4 +28,22 @@ describe('Card', () => {
     render(<Card className="custom-class">Content</Card>);
     expect(screen.getByText('Content')).toHaveClass('custom-class');
   });
+
+  it('renders header slot in a header element', () => {
+    render(<Card header={<h3>Title</h3>}>Body</Card>);
+    expect(screen.getByRole('banner')).toBeInTheDocument();
+    expect(screen.getByText('Title')).toBeInTheDocument();
+  });
+
+  it('renders footer slot in a footer element', () => {
+    render(<Card footer={<span>Footer</span>}>Body</Card>);
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+    expect(screen.getByText('Footer')).toBeInTheDocument();
+  });
+
+  it('does not render header or footer when not provided', () => {
+    render(<Card>Body</Card>);
+    expect(screen.queryByRole('banner')).not.toBeInTheDocument();
+    expect(screen.queryByRole('contentinfo')).not.toBeInTheDocument();
+  });
 });

@@ -16,10 +16,17 @@ export default function ProjectCard({
   thumbnailAlt,
 }: ProjectCardProps) {
   return (
-    <Card as="a" href={url}>
+    <Card
+      as="a"
+      href={url}
+      header={
+        <>
+          <h3>{title}</h3>
+          {subtitle && <p>{subtitle}</p>}
+        </>
+      }
+    >
       {thumbnailUrl && <img src={thumbnailUrl} alt={thumbnailAlt ?? ''} />}
-      <h3>{title}</h3>
-      {subtitle && <p>{subtitle}</p>}
     </Card>
   );
 }
