@@ -8,3 +8,4 @@ export const EXPERIENCES_QUERY = defineQuery(
   `*[_type == "experience"] | order(startDate desc)`,
 );
 export const TECHNOLOGIES_QUERY = defineQuery(`*[_type == "technology"]`);
+export const SETTINGS_QUERY = defineQuery(`*[_type == "settings"][0]`);

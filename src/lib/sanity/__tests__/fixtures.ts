@@ -14,12 +14,6 @@ export function createMockProfile() {
         url: faker.internet.url(),
       },
     ],
-    stats: [
-      {
-        value: `+${faker.number.int({ min: 1, max: 20 })}`,
-        label: faker.lorem.words(3),
-      },
-    ],
   };
 }
 
@@ -57,16 +51,6 @@ export function createMockExperience() {
   };
 }
 
-export function createMockSkill() {
-  return {
-    _id: faker.string.uuid(),
-    label: faker.lorem.words(2),
-    icon: null,
-    color: faker.helpers.arrayElement(['orange', 'lime', 'blue', 'purple']),
-    url: faker.internet.url(),
-  };
-}
-
 export function createMockTechnology() {
   return {
     _id: faker.string.uuid(),
@@ -84,5 +68,15 @@ export function createMockTechnology() {
       'Mobile',
       'Language',
     ]),
+  };
+}
+
+export function createMockSettings() {
+  return {
+    _id: faker.string.uuid(),
+    siteTitle: faker.company.name(),
+    seoDescription: faker.lorem.sentence(),
+    seoImage: null,
+    footerContent: [],
   };
 }

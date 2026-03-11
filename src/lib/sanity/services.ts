@@ -4,6 +4,7 @@ import {
   PROJECTS_QUERY,
   EXPERIENCES_QUERY,
   TECHNOLOGIES_QUERY,
+  SETTINGS_QUERY,
 } from './queries';
 
 export async function getProfile() {
@@ -20,4 +21,8 @@ export async function getExperiences() {
 
 export async function getTechnologies() {
   return client.fetch(TECHNOLOGIES_QUERY);
+}
+
+export async function getSettings() {
+  return client.fetch(SETTINGS_QUERY);
 }

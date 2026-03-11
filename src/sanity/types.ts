@@ -20,21 +20,39 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 };
 
-export type Technology = {
+export type Settings = {
   _id: string;
-  _type: 'technology';
+  _type: 'settings';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
-  icon?: {
+  siteTitle: string;
+  seoDescription?: string;
+  seoImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
   };
-  category: string;
+  footerContent?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
 };
 
 export type SanityImageCrop = {
@@ -51,6 +69,23 @@ export type SanityImageHotspot = {
   y: number;
   height: number;
   width: number;
+};
+
+export type Technology = {
+  _id: string;
+  _type: 'technology';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  icon?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  category: string;
 };
 
 export type Experience = {
@@ -267,9 +302,10 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | SanityImageAssetReference
-  | Technology
+  | Settings
   | SanityImageCrop
   | SanityImageHotspot
+  | Technology
   | Experience
   | Project
   | Slug
@@ -423,6 +459,44 @@ export type TECHNOLOGIES_QUERY_RESULT = Array<{
   category: string;
 }>;
 
+// Source: src/lib/sanity/queries.ts
+// Variable: SETTINGS_QUERY
+// Query: *[_type == "settings"][0]
+export type SETTINGS_QUERY_RESULT = {
+  _id: string;
+  _type: 'settings';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  siteTitle: string;
+  seoDescription?: string;
+  seoImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  footerContent?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+} | null;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
@@ -431,5 +505,6 @@ declare module '@sanity/client' {
     '*[_type == "project"] | order(orderRank asc)': PROJECTS_QUERY_RESULT;
     '*[_type == "experience"] | order(startDate desc)': EXPERIENCES_QUERY_RESULT;
     '*[_type == "technology"]': TECHNOLOGIES_QUERY_RESULT;
+    '*[_type == "settings"][0]': SETTINGS_QUERY_RESULT;
   }
 }

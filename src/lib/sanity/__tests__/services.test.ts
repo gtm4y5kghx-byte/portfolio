@@ -4,18 +4,21 @@ import {
   getProjects,
   getExperiences,
   getTechnologies,
+  getSettings,
 } from '../services';
 import {
   PROFILE_QUERY,
   PROJECTS_QUERY,
   EXPERIENCES_QUERY,
   TECHNOLOGIES_QUERY,
+  SETTINGS_QUERY,
 } from '../queries';
 import {
   createMockProfile,
   createMockProject,
   createMockExperience,
   createMockTechnology,
+  createMockSettings,
 } from './fixtures';
 
 const mockFetch = vi.fn();
@@ -69,5 +72,15 @@ describe('Sanity services', () => {
 
     expect(mockFetch).toHaveBeenCalledWith(TECHNOLOGIES_QUERY);
     expect(result).toEqual(mockTechnologies);
+  });
+
+  it('getSettings fetches with SETTINGS_QUERY', async () => {
+    const mockSettings = createMockSettings();
+    mockFetch.mockResolvedValue(mockSettings);
+
+    const result = await getSettings();
+
+    expect(mockFetch).toHaveBeenCalledWith(SETTINGS_QUERY);
+    expect(result).toEqual(mockSettings);
   });
 });
