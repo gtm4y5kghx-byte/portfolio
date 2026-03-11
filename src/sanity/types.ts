@@ -53,24 +53,6 @@ export type SanityImageHotspot = {
   width: number;
 };
 
-export type Skill = {
-  _id: string;
-  _type: 'skill';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  label: string;
-  icon?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-  };
-  color?: 'orange' | 'lime' | 'blue' | 'purple';
-  url?: string;
-};
-
 export type Experience = {
   _id: string;
   _type: 'experience';
@@ -184,11 +166,6 @@ export type Profile = {
     url: string;
     _key: string;
   }>;
-  stats?: Array<{
-    value: string;
-    label: string;
-    _key: string;
-  }>;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -293,7 +270,6 @@ export type AllSanitySchemaTypes =
   | Technology
   | SanityImageCrop
   | SanityImageHotspot
-  | Skill
   | Experience
   | Project
   | Slug
@@ -368,11 +344,6 @@ export type PROFILE_QUERY_RESULT = {
     url: string;
     _key: string;
   }>;
-  stats?: Array<{
-    value: string;
-    label: string;
-    _key: string;
-  }>;
 } | null;
 
 // Source: src/lib/sanity/queries.ts
@@ -433,27 +404,6 @@ export type EXPERIENCES_QUERY_RESULT = Array<{
 }>;
 
 // Source: src/lib/sanity/queries.ts
-// Variable: SKILLS_QUERY
-// Query: *[_type == "skill"]
-export type SKILLS_QUERY_RESULT = Array<{
-  _id: string;
-  _type: 'skill';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  label: string;
-  icon?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-  };
-  color?: 'blue' | 'lime' | 'orange' | 'purple';
-  url?: string;
-}>;
-
-// Source: src/lib/sanity/queries.ts
 // Variable: TECHNOLOGIES_QUERY
 // Query: *[_type == "technology"]
 export type TECHNOLOGIES_QUERY_RESULT = Array<{
@@ -480,7 +430,6 @@ declare module '@sanity/client' {
     '*[_type == "profile"][0]': PROFILE_QUERY_RESULT;
     '*[_type == "project"] | order(orderRank asc)': PROJECTS_QUERY_RESULT;
     '*[_type == "experience"] | order(startDate desc)': EXPERIENCES_QUERY_RESULT;
-    '*[_type == "skill"]': SKILLS_QUERY_RESULT;
     '*[_type == "technology"]': TECHNOLOGIES_QUERY_RESULT;
   }
 }

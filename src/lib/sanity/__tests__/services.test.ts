@@ -3,21 +3,18 @@ import {
   getProfile,
   getProjects,
   getExperiences,
-  getSkills,
   getTechnologies,
 } from '../services';
 import {
   PROFILE_QUERY,
   PROJECTS_QUERY,
   EXPERIENCES_QUERY,
-  SKILLS_QUERY,
   TECHNOLOGIES_QUERY,
 } from '../queries';
 import {
   createMockProfile,
   createMockProject,
   createMockExperience,
-  createMockSkill,
   createMockTechnology,
 } from './fixtures';
 
@@ -62,16 +59,6 @@ describe('Sanity services', () => {
 
     expect(mockFetch).toHaveBeenCalledWith(EXPERIENCES_QUERY);
     expect(result).toEqual(mockExperiences);
-  });
-
-  it('getSkills fetches with SKILLS_QUERY', async () => {
-    const mockSkills = [createMockSkill()];
-    mockFetch.mockResolvedValue(mockSkills);
-
-    const result = await getSkills();
-
-    expect(mockFetch).toHaveBeenCalledWith(SKILLS_QUERY);
-    expect(result).toEqual(mockSkills);
   });
 
   it('getTechnologies fetches with TECHNOLOGIES_QUERY', async () => {

@@ -7,5 +7,4 @@ export const PROJECTS_QUERY = defineQuery(
 export const EXPERIENCES_QUERY = defineQuery(
   `*[_type == "experience"] | order(startDate desc)`,
 );
-export const SKILLS_QUERY = defineQuery(`*[_type == "skill"]`);
 export const TECHNOLOGIES_QUERY = defineQuery(`*[_type == "technology"]`);

@@ -68,33 +68,6 @@ export const profile = defineType({
         }),
       ],
     }),
-    defineField({
-      name: 'stats',
-      title: 'Stats',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'value',
-              title: 'Value',
-              type: 'string',
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'label',
-              title: 'Label',
-              type: 'string',
-              validation: (rule) => rule.required(),
-            }),
-          ],
-          preview: {
-            select: { title: 'value', subtitle: 'label' },
-          },
-        }),
-      ],
-    }),
   ],
   preview: {
     select: { title: 'name', subtitle: 'role' },

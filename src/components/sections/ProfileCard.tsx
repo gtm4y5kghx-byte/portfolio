@@ -1,5 +1,3 @@
-import { PortableText, type PortableTextBlock } from '@portabletext/react';
-
 interface SocialLink {
   platform: 'github' | 'linkedin';
   url: string;
@@ -7,7 +5,7 @@ interface SocialLink {
 
 interface ProfileCardProps {
   name: string;
-  bio?: PortableTextBlock[];
+  subtitle?: string;
   photoUrl?: string;
   photoAlt?: string;
   socialLinks?: SocialLink[];
@@ -15,7 +13,7 @@ interface ProfileCardProps {
 
 export default function ProfileCard({
   name,
-  bio,
+  subtitle,
   photoUrl,
   photoAlt,
   socialLinks,
@@ -23,8 +21,8 @@ export default function ProfileCard({
   return (
     <div>
       {photoUrl && <img src={photoUrl} alt={photoAlt ?? ''} />}
-      <h2>{name}</h2>
-      {bio && <PortableText value={bio} />}
+      <p>{name}</p>
+      {subtitle && <p>{subtitle}</p>}
       {socialLinks && socialLinks.length > 0 && (
         <ul>
           {socialLinks.map(({ platform, url }) => (
