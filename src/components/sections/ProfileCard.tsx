@@ -1,3 +1,6 @@
+import type { PortableTextValue } from '@/components/ui/RichText';
+import RichText from '@/components/ui/RichText';
+
 interface SocialLink {
   platform: 'github' | 'linkedin';
   url: string;
@@ -5,7 +8,7 @@ interface SocialLink {
 
 interface ProfileCardProps {
   name: string;
-  subtitle?: string;
+  bio?: PortableTextValue;
   photoUrl?: string;
   photoAlt?: string;
   socialLinks?: SocialLink[];
@@ -13,7 +16,7 @@ interface ProfileCardProps {
 
 export default function ProfileCard({
   name,
-  subtitle,
+  bio,
   photoUrl,
   photoAlt,
   socialLinks,
@@ -22,7 +25,7 @@ export default function ProfileCard({
     <div>
       {photoUrl && <img src={photoUrl} alt={photoAlt ?? ''} />}
       <p>{name}</p>
-      {subtitle && <p>{subtitle}</p>}
+      {bio && <RichText value={bio} />}
       {socialLinks && socialLinks.length > 0 && (
         <ul>
           {socialLinks.map(({ platform, url }) => (

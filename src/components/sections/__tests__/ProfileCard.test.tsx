@@ -4,9 +4,17 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import ProfileCard from '../ProfileCard';
 
+const mockBio = [
+  {
+    _type: 'block',
+    _key: '1',
+    children: [{ _type: 'span', _key: '2', text: 'Bio text here' }],
+  },
+];
+
 const defaultProps = {
   name: faker.person.fullName(),
-  subtitle: faker.person.jobTitle(),
+  bio: mockBio,
   photoUrl: faker.image.avatar(),
   photoAlt: faker.person.fullName(),
   socialLinks: [
@@ -21,15 +29,15 @@ describe('ProfileCard', () => {
     expect(screen.getByText(defaultProps.name)).toBeInTheDocument();
   });
 
-  it('renders the subtitle', () => {
+  it('renders bio when provided', () => {
     render(<ProfileCard {...defaultProps} />);
-    expect(screen.getByText(defaultProps.subtitle)).toBeInTheDocument();
+    expect(screen.getByText('Bio text here')).toBeInTheDocument();
   });
 
-  it('does not render a subtitle when not provided', () => {
-    const { subtitle, ...rest } = defaultProps;
+  it('does not render bio when not provided', () => {
+    const { bio, ...rest } = defaultProps;
     render(<ProfileCard {...rest} />);
-    expect(screen.queryByText(defaultProps.subtitle)).not.toBeInTheDocument();
+    expect(screen.queryByText('Bio text here')).not.toBeInTheDocument();
   });
 
   it('renders the photo with alt text', () => {

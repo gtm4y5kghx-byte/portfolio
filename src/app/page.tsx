@@ -28,23 +28,29 @@ export default async function Home() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8">
       <Nav />
-      <main>
+      <main className="flex flex-col gap-8">
+        {/* Two Column Hero: ProfileCard and BioSection */}
         {profile && (
-          <ProfileCard
-            name={profile.name}
-            subtitle={profile.role}
-            photoUrl={profile.photo ? urlFor(profile.photo).url() : undefined}
-            socialLinks={profile.socialLinks?.map(({ platform, url }) => ({
-              platform,
-              url,
-            }))}
-          />
+          <div className="grid grid-cols-[1fr_2fr] gap-8">
+            <ProfileCard
+              name={profile.name}
+              bio={profile.bio}
+              photoUrl={profile.photo ? urlFor(profile.photo).url() : undefined}
+              socialLinks={profile.socialLinks?.map(({ platform, url }) => ({
+                platform,
+                url,
+              }))}
+            />
+            {profile.heroDescription && (
+              <BioSection
+                title={profile.role}
+                content={profile.heroDescription}
+              />
+            )}
+          </div>
         )}
 
-        {profile?.heroDescription && (
-          <BioSection title={profile.role} content={profile.heroDescription} />
-        )}
-
+        {/* Sections: Projects, Technologies & ContactForm */}
         <section>
           {projects
             .filter((p) => !!p.url)
