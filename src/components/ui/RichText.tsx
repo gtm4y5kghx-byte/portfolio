@@ -12,5 +12,9 @@ interface RichTextProps {
 
 export default function RichText({ value }: RichTextProps) {
   if (!value) return null;
-  return <PortableText value={value as unknown as PortableTextBlock[]} />;
+  return (
+    <div className="space-y-4">
+      <PortableText value={value as unknown as PortableTextBlock[]} />
+    </div>
+  );
 }

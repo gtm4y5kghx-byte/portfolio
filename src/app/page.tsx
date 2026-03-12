@@ -25,11 +25,14 @@ export default async function Home() {
       getSettings(),
     ]);
 
+  const publishedProjects = projects.filter((p) => !!p.url);
+
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8">
       <Nav />
       <main className="flex flex-col gap-8">
         {/* Two Column Hero: ProfileCard and BioSection */}
+
         {profile && (
           <div className="grid grid-cols-[1fr_2fr] gap-8">
             <ProfileCard
@@ -51,10 +54,11 @@ export default async function Home() {
         )}
 
         {/* Sections: Projects, Technologies & ContactForm */}
-        <section>
-          {projects
-            .filter((p) => !!p.url)
-            .map((project) => (
+
+        {publishedProjects.length > 0 && (
+          <section aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Recent Projects</h2>
+            {publishedProjects.map((project) => (
               <ProjectCard
                 key={project._id}
                 title={project.title}
@@ -67,30 +71,37 @@ export default async function Home() {
                 }
               />
             ))}
-        </section>
+          </section>
+        )}
 
-        <section>
-          {experiences.map((exp) => (
-            <ExperienceCard
-              key={exp._id}
-              company={exp.company}
-              role={exp.role}
-              description={exp.description}
-              startDate={exp.startDate}
-              endDate={exp.endDate ?? 'Present'}
-            />
-          ))}
-        </section>
+        {experiences.length > 0 && (
+          <section aria-labelledby="experience-heading">
+            <h2 id="experience-heading">Work Experience</h2>
+            {experiences.map((exp) => (
+              <ExperienceCard
+                key={exp._id}
+                company={exp.company}
+                role={exp.role}
+                description={exp.description}
+                startDate={exp.startDate}
+                endDate={exp.endDate ?? 'Present'}
+              />
+            ))}
+          </section>
+        )}
 
-        <section>
-          {technologies.map((tech) => (
-            <TechnologyCard
-              key={tech._id}
-              name={tech.name}
-              iconUrl={tech.icon ? urlFor(tech.icon).url() : undefined}
-            />
-          ))}
-        </section>
+        {technologies.length > 0 && (
+          <section aria-labelledby="languages-heading">
+            <h2 id="languages-heading">Languages</h2>
+            {technologies.map((tech) => (
+              <TechnologyCard
+                key={tech._id}
+                name={tech.name}
+                iconUrl={tech.icon ? urlFor(tech.icon).url() : undefined}
+              />
+            ))}
+          </section>
+        )}
 
         <ContactForm />
       </main>
