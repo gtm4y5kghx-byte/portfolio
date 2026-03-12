@@ -26,9 +26,8 @@ export default async function Home() {
     ]);
 
   return (
-    <>
+    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8">
       <Nav />
-
       <main>
         {profile && (
           <ProfileCard
@@ -91,6 +90,6 @@ export default async function Home() {
       </main>
 
       {settings?.footerContent && <Footer content={settings.footerContent} />}
-    </>
+    </div>
   );
 }
