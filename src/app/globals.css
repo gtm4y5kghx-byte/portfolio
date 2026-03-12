@@ -1,5 +1,21 @@
 @import 'tailwindcss';
 
+@layer base {
+  body {
+    @apply leading-relaxed; /* 1.625 — comfortable for body copy */
+  }
+
+  h1 {
+    @apply text-3xl leading-tight font-bold tracking-tight;
+  }
+  h2 {
+    @apply text-2xl leading-tight font-semibold;
+  }
+  h3 {
+    @apply text-lg leading-snug font-medium;
+  }
+}
+
 @theme inline {
   /* Backgrounds */
   --color-canvas: #1c1c1e; /* bg-canvas */

@@ -22,9 +22,9 @@ export default function ProfileCard({
   socialLinks,
 }: ProfileCardProps) {
   return (
-    <div>
+    <div className="rounded-lg bg-white px-6 py-8 text-black">
       {photoUrl && <img src={photoUrl} alt={photoAlt ?? ''} />}
-      <p>{name}</p>
+      <h1>{name}</h1>
       {bio && <RichText value={bio} />}
       {socialLinks && socialLinks.length > 0 && (
         <ul>
