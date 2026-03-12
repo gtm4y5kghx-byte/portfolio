@@ -9,8 +9,12 @@ interface BioSectionProps {
 
 export default function BioSection({ title, content }: BioSectionProps) {
   return (
-    <section>
-      <SectionHeader text={title} as="h2" />
+    <section className="flex flex-col gap-4">
+      <SectionHeader
+        as="h2"
+        text={title}
+        className="text-8xl leading-none font-bold tracking-tight uppercase"
+      />
       <RichText value={content} />
     </section>
   );
