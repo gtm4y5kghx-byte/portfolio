@@ -1,8 +1,8 @@
-import type { PortableTextBlock } from '@portabletext/react';
+import type { PortableTextValue } from '@/components/ui/RichText';
 import RichText from '@/components/ui/RichText';
 
 interface FooterProps {
-  content: PortableTextBlock[];
+  content: PortableTextValue;
 }
 
 export default function Footer({ content }: FooterProps) {

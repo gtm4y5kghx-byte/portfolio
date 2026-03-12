@@ -4,10 +4,22 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import ExperienceCard from '../ExperienceCard';
 
+const descriptionText = faker.lorem.sentence();
+
 const defaultProps = {
   company: faker.company.name(),
   role: faker.person.jobTitle(),
-  description: faker.lorem.sentence(),
+  description: [
+    {
+      _type: 'block' as const,
+      _key: 'a',
+      children: [
+        { _type: 'span' as const, _key: 'b', text: descriptionText, marks: [] },
+      ],
+      markDefs: [],
+      style: 'normal' as const,
+    },
+  ],
   startDate: 'Jan 2020',
   endDate: 'Present',
 };
@@ -25,7 +37,7 @@ describe('ExperienceCard', () => {
 
   it('renders the description', () => {
     render(<ExperienceCard {...defaultProps} />);
-    expect(screen.getByText(defaultProps.description)).toBeInTheDocument();
+    expect(screen.getByText(descriptionText)).toBeInTheDocument();
   });
 
   it('renders the date range', () => {
