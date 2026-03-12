@@ -34,7 +34,16 @@ export default function ProfileCard({
 }: ProfileCardProps) {
   return (
     <div className="flex flex-col gap-4 rounded-lg bg-white px-6 py-8 text-black">
-      {photoUrl && <img src={photoUrl} alt={photoAlt ?? ''} />}
+      {photoUrl && (
+        <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-full">
+          <img
+            src={photoUrl}
+            alt={photoAlt ?? ''}
+            className="h-full w-full object-cover grayscale"
+          />
+          <div className="bg-canvas/75 absolute inset-0 mix-blend-multiply" />
+        </div>
+      )}
       <h1>{name}</h1>
       {bio && <RichText value={bio} />}
       {socialLinks && socialLinks.length > 0 && (

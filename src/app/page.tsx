@@ -38,7 +38,15 @@ export default async function Home() {
             <ProfileCard
               name={profile.name}
               bio={profile.bio}
-              photoUrl={profile.photo ? urlFor(profile.photo).url() : undefined}
+              photoUrl={
+                profile.photo
+                  ? urlFor(profile.photo)
+                      .width(416)
+                      .format('webp')
+                      .quality(80)
+                      .url()
+                  : undefined
+              }
               socialLinks={profile.socialLinks?.map(({ platform, url }) => ({
                 platform,
                 url,
