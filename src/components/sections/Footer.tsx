@@ -7,7 +7,7 @@ interface FooterProps {
 
 export default function Footer({ content }: FooterProps) {
   return (
-    <footer>
+    <footer className="text-fg-muted flex items-center justify-between border-t border-white/10 py-6 text-sm">
       <p>© {new Date().getFullYear()}</p>
       <RichText value={content} />
     </footer>

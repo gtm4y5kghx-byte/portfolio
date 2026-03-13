@@ -21,7 +21,7 @@ export default function ContactForm({ action }: ContactFormProps) {
       {/* Name + Email */}
       <div className="grid grid-cols-2 gap-6">
         <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-fg-muted text-sm">
+          <label htmlFor="name" className="text-fg-muted text-md font-bold">
             Name
           </label>
           <input
@@ -33,7 +33,7 @@ export default function ContactForm({ action }: ContactFormProps) {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-fg-muted text-sm">
+          <label htmlFor="email" className="text-fg-muted text-md font-bold">
             Email
           </label>
           <input
@@ -48,7 +48,7 @@ export default function ContactForm({ action }: ContactFormProps) {
 
       {/* Message */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-fg-muted text-sm">
+        <label htmlFor="message" className="text-fg-muted text-md font-bold">
           Message
         </label>
         <textarea

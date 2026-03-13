@@ -120,8 +120,8 @@ export default async function Home() {
         )}
 
         <section
-          className="gap-content flex max-w-3xl flex-col"
-          aria-labelledby="technologies-heading"
+          className="gap-content flex flex-col"
+          aria-labelledby="get-in-touch-heading"
         >
           <SectionHeader
             text="Get in Touch"
