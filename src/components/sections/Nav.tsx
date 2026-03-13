@@ -40,7 +40,7 @@ export default function Nav() {
               <span className="sr-only">{label}</span>
             </a>
             {/* Tooltip */}
-            <span className="bg-surface text-fg pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded px-2 py-1 text-xs whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="bg-surface text-fg duration-default pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded px-2 py-1 text-xs whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
               {label}
             </span>
           </li>

@@ -32,15 +32,18 @@
   --color-secondary: #d9738b; /* bg-secondary, text-secondary */
   --color-accent: #d4ad7a; /* bg-accent, text-accent */
 
-  /* Structural */
-  --color-border: #3c3a38; /* border-border */
-
   /* Semantic */
   --color-success: #8fb86e;
   --color-warning: #e5955a;
   --color-error: #d36658;
 
   --font-sans: var(--font-outfit);
+
+  /* Transitions */
+  --transition-duration-default: 500ms;
+
+  /* Spacing */
+  --spacing-content: 1rem;
 }
 
 body {

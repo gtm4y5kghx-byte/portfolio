@@ -33,7 +33,7 @@ export default function ProfileCard({
   socialLinks,
 }: ProfileCardProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-lg bg-white px-6 py-8 text-black">
+    <div className="gap-content flex flex-col rounded-lg bg-white px-6 py-8 text-black">
       {photoUrl && (
         <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-full">
           <img
@@ -52,7 +52,12 @@ export default function ProfileCard({
             const icon = SOCIAL_ICONS[platform];
             return (
               <li key={platform}>
-                <a href={url} aria-label={icon.label} target="_blank">
+                <a
+                  href={url}
+                  aria-label={icon.label}
+                  target="_blank"
+                  className="text-fg-subtle hover:bg-primary duration-default inline-block rounded-full p-2 transition-colors hover:text-white"
+                >
                   <svg
                     viewBox="0 0 24 24"
                     fill="currentColor"

@@ -9,7 +9,7 @@ interface BioSectionProps {
 
 export default function BioSection({ title, content }: BioSectionProps) {
   return (
-    <section className="flex flex-col gap-4">
+    <section className="gap-content flex flex-col">
       <SectionHeader
         as="h2"
         text={title}
