@@ -106,16 +106,18 @@ export default async function Home() {
               id="experience-heading"
               as="h2"
             />
-            {experiences.map((exp) => (
-              <ExperienceCard
-                key={exp._id}
-                company={exp.company}
-                role={exp.role}
-                description={exp.description}
-                startDate={exp.startDate}
-                endDate={exp.endDate ?? 'Present'}
-              />
-            ))}
+            <div className="divide-y divide-white/10">
+              {experiences.map((exp) => (
+                <ExperienceCard
+                  key={exp._id}
+                  company={exp.company}
+                  role={exp.role}
+                  description={exp.description}
+                  startDate={exp.startDate}
+                  endDate={exp.endDate ?? 'Present'}
+                />
+              ))}
+            </div>
           </section>
         )}
 

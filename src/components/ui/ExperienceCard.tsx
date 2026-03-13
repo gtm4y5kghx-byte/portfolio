@@ -18,26 +18,15 @@ export default function ExperienceCard({
   endDate,
 }: ExperienceCardProps) {
   return (
-    <Card
-      header={
-        <div className="flex flex-col gap-2">
-          <h2>{company}</h2>
-          {role && (
-            <p>
-              <strong>{role}</strong>
-            </p>
-          )}
-        </div>
-      }
-      footer={
-        <time>
+    <Card className="flex flex-col gap-2 py-6">
+      <div className="flex items-baseline justify-between">
+        <h3 className="text-2xl font-bold">{company}</h3>
+        <time className="text-sm text-white/60">
           {startDate} - {endDate}
         </time>
-      }
-    >
-      <div className="mt-4 mb-2">
-        <RichText value={description} />
       </div>
+      {role && <p className="text-accent/80 text-sm font-semibold">{role}</p>}
+      {description && <RichText value={description} />}
     </Card>
   );
 }

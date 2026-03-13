@@ -47,6 +47,7 @@ export function createMockExperience() {
           probability: 0.5,
         },
       ) ?? null,
+    orderRank: faker.number.int({ min: 1, max: 10 }),
   };
 }
 

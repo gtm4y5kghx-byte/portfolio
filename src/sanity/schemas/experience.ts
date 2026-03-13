@@ -35,12 +35,17 @@ export const experience = defineType({
       type: 'string',
       description: 'e.g. March 2026 — leave empty for current position',
     }),
+    defineField({
+      name: 'orderRank',
+      title: 'Order',
+      type: 'number',
+    }),
   ],
   orderings: [
     {
-      title: 'Start Date (Newest)',
-      name: 'startDateDesc',
-      by: [{ field: 'startDate', direction: 'desc' }],
+      title: 'Manual Order',
+      name: 'orderAsc',
+      by: [{ field: 'orderRank', direction: 'asc' }],
     },
   ],
   preview: {

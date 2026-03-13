@@ -116,6 +116,7 @@ export type Experience = {
   }>;
   startDate: string;
   endDate?: string;
+  orderRank?: number;
 };
 
 export type Project = {
@@ -406,7 +407,7 @@ export type PROJECTS_QUERY_RESULT = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: EXPERIENCES_QUERY
-// Query: *[_type == "experience"] | order(startDate desc)
+// Query: *[_type == "experience"] | order(orderRank asc)
 export type EXPERIENCES_QUERY_RESULT = Array<{
   _id: string;
   _type: 'experience';
@@ -435,6 +436,7 @@ export type EXPERIENCES_QUERY_RESULT = Array<{
   }>;
   startDate: string;
   endDate?: string;
+  orderRank?: number;
 }>;
 
 // Source: src/lib/sanity/queries.ts
@@ -501,7 +503,7 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "profile"][0]': PROFILE_QUERY_RESULT;
     '*[_type == "project"] | order(orderRank asc)': PROJECTS_QUERY_RESULT;
-    '*[_type == "experience"] | order(startDate desc)': EXPERIENCES_QUERY_RESULT;
+    '*[_type == "experience"] | order(orderRank asc)': EXPERIENCES_QUERY_RESULT;
     '*[_type == "technology"]': TECHNOLOGIES_QUERY_RESULT;
     '*[_type == "settings"][0]': SETTINGS_QUERY_RESULT;
   }
