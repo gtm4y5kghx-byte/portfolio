@@ -26,7 +26,7 @@ export const NAV_ITEMS: NavItem[] = [
 export default function Nav() {
   return (
     <nav
-      className="bg-surface-sunken mx-auto w-80 rounded-md px-4 py-2"
+      className="bg-surface-sunken mx-auto mb-16 w-80 rounded-md px-4 py-2"
       aria-label="Main navigation"
     >
       <ul className="flex items-center justify-between">
