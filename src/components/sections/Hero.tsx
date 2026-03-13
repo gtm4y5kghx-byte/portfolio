@@ -1,5 +1,6 @@
 import type { PortableTextValue } from '@/components/ui/RichText';
 import RichText from '@/components/ui/RichText';
+import SectionHeader from './SectionHeader';
 
 const SOCIAL_ICONS = {
   github: {
@@ -17,35 +18,24 @@ interface SocialLink {
   url: string;
 }
 
-interface ProfileCardProps {
+interface HeroProps {
   name: string;
   bio?: PortableTextValue;
-  photoUrl?: string;
-  photoAlt?: string;
   socialLinks?: SocialLink[];
 }
 
-export default function ProfileCard({
-  name,
-  bio,
-  photoUrl,
-  photoAlt,
-  socialLinks,
-}: ProfileCardProps) {
+export default function Hero({ name, bio, socialLinks }: HeroProps) {
   return (
-    <div className="gap-content flex flex-col rounded-lg bg-white px-6 py-8 text-black shadow-xl">
-      {photoUrl && (
-        <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-full">
-          <img
-            src={photoUrl}
-            alt={photoAlt ?? ''}
-            className="h-full w-full object-cover grayscale"
-          />
-          <div className="bg-canvas/75 absolute inset-0 mix-blend-multiply" />
-        </div>
-      )}
-      <h1 className="text-primary">{name}</h1>
-      {bio && <RichText value={bio} />}
+    <section className="flex flex-col gap-4">
+      <div className="gap-content flex flex-col">
+        <SectionHeader text={name} id="projects-heading" />
+        {bio && (
+          <div className="max-w-2xl">
+            <RichText value={bio} />
+          </div>
+        )}
+      </div>
+
       {socialLinks && socialLinks.length > 0 && (
         <ul className="flex gap-3">
           {socialLinks.map(({ platform, url }) => {
@@ -72,6 +62,6 @@ export default function ProfileCard({
           })}
         </ul>
       )}
-    </div>
+    </section>
   );
 }

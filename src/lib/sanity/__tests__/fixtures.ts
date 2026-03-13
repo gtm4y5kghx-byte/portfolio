@@ -4,10 +4,7 @@ export function createMockProfile() {
   return {
     _id: faker.string.uuid(),
     name: faker.person.fullName(),
-    role: faker.person.jobTitle(),
     bio: [],
-    photo: null,
-    heroDescription: [],
     socialLinks: [
       {
         platform: faker.helpers.arrayElement(['github', 'linkedin']),

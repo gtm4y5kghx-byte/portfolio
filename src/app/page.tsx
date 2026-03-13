@@ -7,8 +7,7 @@ import {
 } from '@/lib/sanity/services';
 import { urlFor } from '@/lib/sanity/image';
 import Nav from '@/components/sections/Nav';
-import ProfileCard from '@/components/sections/ProfileCard';
-import BioSection from '@/components/sections/BioSection';
+import Hero from '@/components/sections/Hero';
 import ProjectCard from '@/components/ui/ProjectCard';
 import ExperienceCard from '@/components/ui/ExperienceCard';
 import TechnologyCard from '@/components/ui/TechnologyCard';
@@ -32,34 +31,15 @@ export default async function Home() {
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8">
       <Nav />
       <main className="flex flex-col gap-8">
-        {/* Two Column Hero: ProfileCard and BioSection */}
-
         {profile && (
-          <div className="grid grid-cols-[1fr_2fr] gap-8">
-            <ProfileCard
-              name={profile.name}
-              bio={profile.bio}
-              photoUrl={
-                profile.photo
-                  ? urlFor(profile.photo)
-                      .width(416)
-                      .format('webp')
-                      .quality(80)
-                      .url()
-                  : undefined
-              }
-              socialLinks={profile.socialLinks?.map(({ platform, url }) => ({
-                platform,
-                url,
-              }))}
-            />
-            {profile.heroDescription && (
-              <BioSection
-                title={profile.role}
-                content={profile.heroDescription}
-              />
-            )}
-          </div>
+          <Hero
+            name={profile.name}
+            bio={profile.bio}
+            socialLinks={profile.socialLinks?.map(({ platform, url }) => ({
+              platform,
+              url,
+            }))}
+          />
         )}
 
         {/* Sections: Projects, Technologies & ContactForm */}

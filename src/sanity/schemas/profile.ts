@@ -12,26 +12,8 @@ export const profile = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'role',
-      title: 'Role',
-      type: 'string',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: 'bio',
       title: 'Bio',
-      type: 'array',
-      of: [defineArrayMember({ type: 'block' })],
-    }),
-    defineField({
-      name: 'photo',
-      title: 'Photo',
-      type: 'image',
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: 'heroDescription',
-      title: 'Hero Description',
       type: 'array',
       of: [defineArrayMember({ type: 'block' })],
     }),
@@ -70,6 +52,6 @@ export const profile = defineType({
     }),
   ],
   preview: {
-    select: { title: 'name', subtitle: 'role' },
+    select: { title: 'name' },
   },
 });
