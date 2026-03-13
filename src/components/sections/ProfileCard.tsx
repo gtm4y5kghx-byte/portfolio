@@ -33,7 +33,7 @@ export default function ProfileCard({
   socialLinks,
 }: ProfileCardProps) {
   return (
-    <div className="gap-content flex flex-col rounded-lg bg-white px-6 py-8 text-black">
+    <div className="gap-content flex flex-col rounded-lg bg-white px-6 py-8 text-black shadow-xl">
       {photoUrl && (
         <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-full">
           <img

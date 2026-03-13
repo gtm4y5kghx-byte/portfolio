@@ -19,7 +19,7 @@ export default function ProjectCard({
     <Card
       as="a"
       href={url}
-      className="group relative overflow-hidden rounded-lg"
+      className="group relative overflow-hidden rounded-lg shadow-lg"
     >
       {thumbnailUrl && (
         <img
@@ -28,9 +28,9 @@ export default function ProjectCard({
           className="duration-default aspect-video w-full object-cover transition-transform group-hover:scale-105"
         />
       )}
-      <div className="bg-canvas/70 hover-target duration-default group-hover:bg-accent absolute inset-x-0 bottom-0 px-4 transition-colors">
+      <div className="bg-canvas/70 hover-target duration-default group-hover:bg-primary absolute inset-x-0 bottom-0 px-4 transition-colors">
         {/* Background sweep */}
-        <div className="bg-accent duration-default absolute inset-0 -translate-x-full transition-transform group-hover:translate-x-0" />
+        <div className="bg-primary duration-default absolute inset-0 -translate-x-full transition-transform group-hover:translate-x-0" />
         {/* Content */}
         <div className="relative z-10 flex items-center justify-between px-4 py-3">
           <div>
