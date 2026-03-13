@@ -11,19 +11,8 @@ export const technology = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'icon',
-      title: 'Icon',
-      type: 'image',
-    }),
-    defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      validation: (rule) => rule.required(),
-    }),
   ],
   preview: {
-    select: { title: 'name', subtitle: 'category', media: 'icon' },
+    select: { title: 'name' },
   },
 });

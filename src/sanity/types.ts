@@ -78,14 +78,6 @@ export type Technology = {
   _updatedAt: string;
   _rev: string;
   name: string;
-  icon?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-  };
-  category: string;
 };
 
 export type Experience = {
@@ -397,14 +389,6 @@ export type TECHNOLOGIES_QUERY_RESULT = Array<{
   _updatedAt: string;
   _rev: string;
   name: string;
-  icon?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-  };
-  category: string;
 }>;
 
 // Source: src/lib/sanity/queries.ts

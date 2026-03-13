@@ -58,13 +58,6 @@ export function createMockTechnology() {
       'Go',
       'Vue',
     ]),
-    icon: null,
-    category: faker.helpers.arrayElement([
-      'Frontend',
-      'Backend',
-      'Mobile',
-      'Language',
-    ]),
   };
 }
 

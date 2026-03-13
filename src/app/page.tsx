@@ -78,7 +78,7 @@ export default async function Home() {
 
         {experiences.length > 0 && (
           <section
-            className="gap-content flex flex-col"
+            className="gap-content flex max-w-3xl flex-col"
             aria-labelledby="experience-heading"
           >
             <SectionHeader
@@ -102,15 +102,20 @@ export default async function Home() {
         )}
 
         {technologies.length > 0 && (
-          <section aria-labelledby="languages-heading">
-            <h2 id="languages-heading">Languages</h2>
-            {technologies.map((tech) => (
-              <TechnologyCard
-                key={tech._id}
-                name={tech.name}
-                iconUrl={tech.icon ? urlFor(tech.icon).url() : undefined}
-              />
-            ))}
+          <section
+            className="gap-content flex max-w-3xl flex-col"
+            aria-labelledby="technologies-heading"
+          >
+            <SectionHeader
+              text="Technologies"
+              id="technologies-heading"
+              as="h2"
+            />
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+              {technologies.map((tech) => (
+                <TechnologyCard key={tech._id} name={tech.name} />
+              ))}
+            </div>
           </section>
         )}
 
