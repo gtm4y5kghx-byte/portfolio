@@ -21,13 +21,13 @@ export default function TechnologyCard({ name }: TechnologyCardProps) {
   const iconPath = TECH_ICONS[name];
 
   return (
-    <Card className="flex items-center gap-3 rounded-lg bg-white/5 px-4 py-3">
+    <Card className="group flex items-center gap-3 rounded-lg bg-white/5 px-4 py-3 transition-colors duration-default hover:bg-white/10">
       {iconPath && (
         <svg
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden="true"
-          className="h-6 w-6 shrink-0 text-white/60"
+          className="h-6 w-6 shrink-0 text-white/60 transition-colors duration-default group-hover:text-white"
         >
           <path d={iconPath} />
         </svg>
