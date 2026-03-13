@@ -13,7 +13,9 @@ export default function Card(props: CardProps) {
   return (
     <Tag
       className={className}
-      {...(Tag === 'a' ? { href: (props as { href: string }).href } : {})}
+      {...(Tag === 'a'
+        ? { href: (props as { href: string }).href, target: '_blank' }
+        : {})}
     >
       {header && <header>{header}</header>}
       {children}

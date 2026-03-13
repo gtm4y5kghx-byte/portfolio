@@ -14,6 +14,7 @@ import ExperienceCard from '@/components/ui/ExperienceCard';
 import TechnologyCard from '@/components/ui/TechnologyCard';
 import ContactForm from '@/components/sections/ContactForm';
 import Footer from '@/components/sections/Footer';
+import SectionHeader from '@/components/sections/SectionHeader';
 
 export default async function Home() {
   const [profile, projects, experiences, technologies, settings] =
@@ -64,21 +65,30 @@ export default async function Home() {
         {/* Sections: Projects, Technologies & ContactForm */}
 
         {publishedProjects.length > 0 && (
-          <section aria-labelledby="projects-heading">
-            <h2 id="projects-heading">Recent Projects</h2>
-            {publishedProjects.map((project) => (
-              <ProjectCard
-                key={project._id}
-                title={project.title}
-                subtitle={project.subtitle}
-                url={project.url!}
-                thumbnailUrl={
-                  project.thumbnail
-                    ? urlFor(project.thumbnail).url()
-                    : undefined
-                }
-              />
-            ))}
+          <section
+            className="gap-content flex flex-col"
+            aria-labelledby="projects-heading"
+          >
+            <SectionHeader
+              text="Recent Projects"
+              id="projects-heading"
+              as="h2"
+            />
+            <div className="grid grid-cols-2 gap-8">
+              {publishedProjects.map((project) => (
+                <ProjectCard
+                  key={project._id}
+                  title={project.title}
+                  subtitle={project.subtitle}
+                  url={project.url!}
+                  thumbnailUrl={
+                    project.thumbnail
+                      ? urlFor(project.thumbnail).url()
+                      : undefined
+                  }
+                />
+              ))}
+            </div>
           </section>
         )}
 

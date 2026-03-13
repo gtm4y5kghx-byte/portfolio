@@ -19,14 +19,19 @@ export default function ProjectCard({
     <Card
       as="a"
       href={url}
-      header={
-        <>
-          <h3>{title}</h3>
-          {subtitle && <p>{subtitle}</p>}
-        </>
-      }
+      className="group relative overflow-hidden rounded-lg"
     >
-      {thumbnailUrl && <img src={thumbnailUrl} alt={thumbnailAlt ?? ''} />}
+      {thumbnailUrl && (
+        <img
+          src={thumbnailUrl}
+          alt={thumbnailAlt ?? ''}
+          className="duration-default aspect-video w-full object-cover transition-transform group-hover:scale-105"
+        />
+      )}
+      <div className="bg-canvas/70 absolute inset-x-0 bottom-0 px-4 py-3">
+        <h3>{title}</h3>
+        {subtitle && <p className="text-fg-muted">{subtitle}</p>}
+      </div>
     </Card>
   );
 }
