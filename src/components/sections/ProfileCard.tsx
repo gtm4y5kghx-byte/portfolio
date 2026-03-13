@@ -44,7 +44,7 @@ export default function ProfileCard({
           <div className="bg-canvas/75 absolute inset-0 mix-blend-multiply" />
         </div>
       )}
-      <h1>{name}</h1>
+      <h1 className="text-primary">{name}</h1>
       {bio && <RichText value={bio} />}
       {socialLinks && socialLinks.length > 0 && (
         <ul className="flex gap-3">
@@ -56,7 +56,7 @@ export default function ProfileCard({
                   href={url}
                   aria-label={icon.label}
                   target="_blank"
-                  className="text-fg-subtle hover:bg-primary duration-default inline-block rounded-full p-2 transition-colors hover:text-white"
+                  className="bg-primary duration-default hover:bg-surface inline-block rounded-full p-2 text-white transition-colors"
                 >
                   <svg
                     viewBox="0 0 24 24"
