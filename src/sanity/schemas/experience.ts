@@ -25,19 +25,15 @@ export const experience = defineType({
     defineField({
       name: 'startDate',
       title: 'Start Date',
-      type: 'date',
+      type: 'string',
+      description: 'e.g. March 2024',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'endDate',
       title: 'End Date',
-      type: 'date',
-      description: 'Leave empty for current position',
-    }),
-    defineField({
-      name: 'url',
-      title: 'URL',
-      type: 'url',
+      type: 'string',
+      description: 'e.g. March 2026 — leave empty for current position',
     }),
   ],
   orderings: [
@@ -56,7 +52,7 @@ export const experience = defineType({
     prepare({ title, subtitle, startDate }) {
       return {
         title,
-        subtitle: [subtitle, startDate?.split('-')[0]]
+        subtitle: [subtitle, startDate]
           .filter(Boolean)
           .join(' · '),
       };

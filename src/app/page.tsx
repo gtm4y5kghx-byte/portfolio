@@ -83,7 +83,11 @@ export default async function Home() {
                   url={project.url!}
                   thumbnailUrl={
                     project.thumbnail
-                      ? urlFor(project.thumbnail).url()
+                      ? urlFor(project.thumbnail)
+                          .width(960)
+                          .format('webp')
+                          .quality(80)
+                          .url()
                       : undefined
                   }
                 />
@@ -93,8 +97,15 @@ export default async function Home() {
         )}
 
         {experiences.length > 0 && (
-          <section aria-labelledby="experience-heading">
-            <h2 id="experience-heading">Work Experience</h2>
+          <section
+            className="gap-content flex flex-col"
+            aria-labelledby="experience-heading"
+          >
+            <SectionHeader
+              text="Work Experience"
+              id="experience-heading"
+              as="h2"
+            />
             {experiences.map((exp) => (
               <ExperienceCard
                 key={exp._id}

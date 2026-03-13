@@ -39,15 +39,14 @@ export function createMockExperience() {
     company: faker.company.name(),
     role: faker.person.jobTitle(),
     description: [],
-    startDate: faker.date.past({ years: 5 }).toISOString().split('T')[0],
+    startDate: faker.date.past({ years: 5 }).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
     endDate:
       faker.helpers.maybe(
-        () => faker.date.recent().toISOString().split('T')[0],
+        () => faker.date.recent().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
         {
           probability: 0.5,
         },
       ) ?? null,
-    url: faker.internet.url(),
   };
 }
 

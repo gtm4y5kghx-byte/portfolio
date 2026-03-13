@@ -20,10 +20,14 @@ export default function ExperienceCard({
   return (
     <Card
       header={
-        <>
-          <h3>{company}</h3>
-          {role && <p>{role}</p>}
-        </>
+        <div className="flex flex-col gap-2">
+          <h2>{company}</h2>
+          {role && (
+            <p>
+              <strong>{role}</strong>
+            </p>
+          )}
+        </div>
       }
       footer={
         <time>
@@ -31,7 +35,9 @@ export default function ExperienceCard({
         </time>
       }
     >
-      <RichText value={description} />
+      <div className="mt-4 mb-2">
+        <RichText value={description} />
+      </div>
     </Card>
   );
 }

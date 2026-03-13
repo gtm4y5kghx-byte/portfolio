@@ -116,7 +116,6 @@ export type Experience = {
   }>;
   startDate: string;
   endDate?: string;
-  url?: string;
 };
 
 export type Project = {
@@ -436,7 +435,6 @@ export type EXPERIENCES_QUERY_RESULT = Array<{
   }>;
   startDate: string;
   endDate?: string;
-  url?: string;
 }>;
 
 // Source: src/lib/sanity/queries.ts
