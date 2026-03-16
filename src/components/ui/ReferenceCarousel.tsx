@@ -29,14 +29,14 @@ export default function ReferenceCarousel({
   return (
     <div ref={containerRef} className="relative">
       {/* Slides — stacked */}
-      <div className="relative overflow-hidden">
+      <div className="grid overflow-hidden" style={{ gridTemplate: '1fr / 1fr' }}>
         {testimonials.map((t, i) => (
           <div
             key={i}
             ref={(el) => {
               if (el) slidesRef.current[i] = el;
             }}
-            className={i === 0 ? 'relative' : 'absolute inset-0'}
+            style={{ gridArea: '1 / 1' }}
           >
             <ReferenceSlide
               quote={t.quote}
