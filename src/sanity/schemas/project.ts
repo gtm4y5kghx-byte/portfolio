@@ -36,18 +36,6 @@ export const project = defineType({
       type: 'url',
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'orderRank',
-      title: 'Order',
-      type: 'number',
-    }),
-  ],
-  orderings: [
-    {
-      title: 'Manual Order',
-      name: 'orderAsc',
-      by: [{ field: 'orderRank', direction: 'asc' }],
-    },
   ],
   preview: {
     select: { title: 'title', subtitle: 'subtitle', media: 'thumbnail' },
