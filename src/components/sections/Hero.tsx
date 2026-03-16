@@ -18,13 +18,19 @@ interface SocialLink {
   url: string;
 }
 
+const EMAIL_ICON = {
+  label: 'Email',
+  path: 'M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67ZM22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z',
+};
+
 interface HeroProps {
   name: string;
   bio?: PortableTextValue;
+  email?: string;
   socialLinks?: SocialLink[];
 }
 
-export default function Hero({ name, bio, socialLinks }: HeroProps) {
+export default function Hero({ name, bio, email, socialLinks }: HeroProps) {
   return (
     <section className="flex flex-col gap-4">
       <div className="gap-content flex flex-col">
@@ -36,9 +42,9 @@ export default function Hero({ name, bio, socialLinks }: HeroProps) {
         )}
       </div>
 
-      {socialLinks && socialLinks.length > 0 && (
+      {(socialLinks?.length || email) && (
         <ul className="flex gap-3">
-          {socialLinks.map(({ platform, url }) => {
+          {socialLinks?.map(({ platform, url }) => {
             const icon = SOCIAL_ICONS[platform];
             return (
               <li key={platform}>
@@ -60,6 +66,24 @@ export default function Hero({ name, bio, socialLinks }: HeroProps) {
               </li>
             );
           })}
+          {email && (
+            <li>
+              <a
+                href={`mailto:${email}`}
+                aria-label={EMAIL_ICON.label}
+                className="bg-primary duration-default hover:bg-surface inline-block rounded-full p-2 text-white transition-colors"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
+                  <path d={EMAIL_ICON.path} />
+                </svg>
+              </a>
+            </li>
+          )}
         </ul>
       )}
     </section>

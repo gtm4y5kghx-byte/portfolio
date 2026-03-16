@@ -18,6 +18,12 @@ export const profile = defineType({
       of: [defineArrayMember({ type: 'block' })],
     }),
     defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      validation: (rule) => rule.email(),
+    }),
+    defineField({
       name: 'socialLinks',
       title: 'Social Links',
       type: 'array',

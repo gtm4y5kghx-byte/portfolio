@@ -35,6 +35,7 @@ export default async function Home() {
           <Hero
             name={profile.name}
             bio={profile.bio}
+            email={profile.email}
             socialLinks={profile.socialLinks?.map(({ platform, url }) => ({
               platform,
               url,

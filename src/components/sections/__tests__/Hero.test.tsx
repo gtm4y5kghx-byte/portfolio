@@ -61,4 +61,16 @@ describe('Hero', () => {
     render(<Hero {...defaultProps} socialLinks={socialLinks} />);
     expect(screen.getByLabelText('GitHub')).toHaveAttribute('target', '_blank');
   });
+
+  it('renders email link as mailto', () => {
+    render(<Hero {...defaultProps} email="me@jasenmp.com" />);
+    const link = screen.getByLabelText('Email');
+    expect(link).toHaveAttribute('href', 'mailto:me@jasenmp.com');
+    expect(link).not.toHaveAttribute('target');
+  });
+
+  it('does not render email link when not provided', () => {
+    render(<Hero {...defaultProps} />);
+    expect(screen.queryByLabelText('Email')).not.toBeInTheDocument();
+  });
 });
