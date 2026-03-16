@@ -20,14 +20,14 @@ export default function ReferenceCarousel({
 }: ReferenceCarouselProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<HTMLDivElement[]>([]);
-  const { activeIndex, goToSlide } = useCarousel(
+  const { activeIndex, goToSlide, pause, resume } = useCarousel(
     containerRef,
     slidesRef,
     testimonials.length,
   );
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative" onMouseEnter={pause} onMouseLeave={resume}>
       {/* Slides — stacked */}
       <div className="grid overflow-hidden" style={{ gridTemplate: '1fr / 1fr' }}>
         {testimonials.map((t, i) => (

@@ -8,6 +8,7 @@ export function useCarousel(
   count: number,
 ) {
   const isAnimating = useRef(false);
+  const isPaused = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const goToSlide = useCallback(
@@ -73,11 +74,16 @@ export function useCarousel(
     if (count <= 1) return;
 
     const timer = setInterval(() => {
-      goToSlide((activeIndex + 1) % count);
+      if (!isPaused.current) {
+        goToSlide((activeIndex + 1) % count);
+      }
     }, 5000);
 
     return () => clearInterval(timer);
   }, [activeIndex, count, goToSlide, slidesRef]);
 
-  return { activeIndex, goToSlide };
+  const pause = useCallback(() => { isPaused.current = true; }, []);
+  const resume = useCallback(() => { isPaused.current = false; }, []);
+
+  return { activeIndex, goToSlide, pause, resume };
 }
