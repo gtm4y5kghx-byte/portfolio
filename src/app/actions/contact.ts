@@ -23,6 +23,7 @@ function validate(
 }
 
 export async function submitContact(
+  _prevState: ContactResult | null,
   formData: FormData,
 ): Promise<ContactResult> {
   const name = formData.get('name') as string;
