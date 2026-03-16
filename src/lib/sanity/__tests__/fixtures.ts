@@ -61,6 +61,17 @@ export function createMockTechnology() {
   };
 }
 
+export function createMockTestimonial() {
+  return {
+    _id: faker.string.uuid(),
+    quote: faker.lorem.paragraph(),
+    author: faker.person.fullName(),
+    role: faker.person.jobTitle(),
+    company: faker.company.name(),
+    orderRank: faker.number.int({ min: 1, max: 10 }),
+  };
+}
+
 export function createMockSettings() {
   return {
     _id: faker.string.uuid(),

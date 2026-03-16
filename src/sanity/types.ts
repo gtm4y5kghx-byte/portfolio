@@ -71,6 +71,19 @@ export type SanityImageHotspot = {
   width: number;
 };
 
+export type Testimonial = {
+  _id: string;
+  _type: 'testimonial';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  orderRank: number;
+};
+
 export type Technology = {
   _id: string;
   _type: 'technology';
@@ -272,6 +285,7 @@ export type AllSanitySchemaTypes =
   | Settings
   | SanityImageCrop
   | SanityImageHotspot
+  | Testimonial
   | Technology
   | Experience
   | Project
@@ -394,6 +408,22 @@ export type TECHNOLOGIES_QUERY_RESULT = Array<{
 }>;
 
 // Source: src/lib/sanity/queries.ts
+// Variable: TESTIMONIALS_QUERY
+// Query: *[_type == "testimonial"] | order(orderRank asc)
+export type TESTIMONIALS_QUERY_RESULT = Array<{
+  _id: string;
+  _type: 'testimonial';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  orderRank: number;
+}>;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: SETTINGS_QUERY
 // Query: *[_type == "settings"][0]
 export type SETTINGS_QUERY_RESULT = {
@@ -439,6 +469,7 @@ declare module '@sanity/client' {
     '*[_type == "project"] | order(orderRank asc)': PROJECTS_QUERY_RESULT;
     '*[_type == "experience"] | order(orderRank asc)': EXPERIENCES_QUERY_RESULT;
     '*[_type == "technology"]': TECHNOLOGIES_QUERY_RESULT;
+    '*[_type == "testimonial"] | order(orderRank asc)': TESTIMONIALS_QUERY_RESULT;
     '*[_type == "settings"][0]': SETTINGS_QUERY_RESULT;
   }
 }

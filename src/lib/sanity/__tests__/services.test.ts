@@ -4,6 +4,7 @@ import {
   getProjects,
   getExperiences,
   getTechnologies,
+  getTestimonials,
   getSettings,
 } from '../services';
 import {
@@ -11,6 +12,7 @@ import {
   PROJECTS_QUERY,
   EXPERIENCES_QUERY,
   TECHNOLOGIES_QUERY,
+  TESTIMONIALS_QUERY,
   SETTINGS_QUERY,
 } from '../queries';
 import {
@@ -18,6 +20,7 @@ import {
   createMockProject,
   createMockExperience,
   createMockTechnology,
+  createMockTestimonial,
   createMockSettings,
 } from './fixtures';
 
@@ -72,6 +75,16 @@ describe('Sanity services', () => {
 
     expect(mockFetch).toHaveBeenCalledWith(TECHNOLOGIES_QUERY);
     expect(result).toEqual(mockTechnologies);
+  });
+
+  it('getTestimonials fetches with TESTIMONIALS_QUERY', async () => {
+    const mockTestimonials = [createMockTestimonial(), createMockTestimonial()];
+    mockFetch.mockResolvedValue(mockTestimonials);
+
+    const result = await getTestimonials();
+
+    expect(mockFetch).toHaveBeenCalledWith(TESTIMONIALS_QUERY);
+    expect(result).toEqual(mockTestimonials);
   });
 
   it('getSettings fetches with SETTINGS_QUERY', async () => {

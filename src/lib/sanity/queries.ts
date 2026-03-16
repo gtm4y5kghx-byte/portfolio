@@ -8,4 +8,7 @@ export const EXPERIENCES_QUERY = defineQuery(
   `*[_type == "experience"] | order(orderRank asc)`,
 );
 export const TECHNOLOGIES_QUERY = defineQuery(`*[_type == "technology"]`);
+export const TESTIMONIALS_QUERY = defineQuery(
+  `*[_type == "testimonial"] | order(orderRank asc)`,
+);
 export const SETTINGS_QUERY = defineQuery(`*[_type == "settings"][0]`);
