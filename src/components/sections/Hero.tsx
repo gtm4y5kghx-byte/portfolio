@@ -30,40 +30,31 @@ interface HeroProps {
 export default function Hero({ name, bio, email, socialLinks }: HeroProps) {
   return (
     <section className="flex flex-col gap-4">
-      <div className="gap-content flex flex-col">
-        <SectionHeader text={name} id="projects-heading" />
-        <div className="max-w-2xl">
-          <RichText value={bio} />
-        </div>
+      <SectionHeader text={name} id="projects-heading" />
+      <div className="max-w-2xl">
+        <RichText value={bio} />
       </div>
+      <SocialLinks socialLinks={socialLinks} email={email} />
+    </section>
+  );
+}
 
-      <ul className="flex gap-3">
-        {socialLinks.map(({ platform, url }) => {
-            const icon = SOCIAL_ICONS[platform];
-            return (
-              <li key={platform}>
-                <a
-                  href={url}
-                  aria-label={icon.label}
-                  target="_blank"
-                  className="bg-primary duration-default hover:bg-surface inline-block rounded-full p-2 text-white transition-colors"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    className="h-5 w-5"
-                  >
-                    <path d={icon.path} />
-                  </svg>
-                </a>
-              </li>
-            );
-          })}
-          <li>
+interface SocialLinksProps {
+  socialLinks: Array<{ platform: Platform; url: string }>;
+  email: string;
+}
+
+export function SocialLinks({ socialLinks, email }: SocialLinksProps) {
+  return (
+    <ul className="flex gap-3">
+      {socialLinks.map(({ platform, url }) => {
+        const icon = SOCIAL_ICONS[platform];
+        return (
+          <li key={platform}>
             <a
-              href={`mailto:${email}`}
-              aria-label={EMAIL_ICON.label}
+              href={url}
+              aria-label={icon.label}
+              target="_blank"
               className="bg-primary duration-default hover:bg-surface inline-block rounded-full p-2 text-white transition-colors"
             >
               <svg
@@ -72,11 +63,28 @@ export default function Hero({ name, bio, email, socialLinks }: HeroProps) {
                 aria-hidden="true"
                 className="h-5 w-5"
               >
-                <path d={EMAIL_ICON.path} />
+                <path d={icon.path} />
               </svg>
             </a>
           </li>
-      </ul>
-    </section>
+        );
+      })}
+      <li>
+        <a
+          href={`mailto:${email}`}
+          aria-label={EMAIL_ICON.label}
+          className="bg-primary duration-default hover:bg-surface inline-block rounded-full p-2 text-white transition-colors"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+            className="h-5 w-5"
+          >
+            <path d={EMAIL_ICON.path} />
+          </svg>
+        </a>
+      </li>
+    </ul>
   );
 }

@@ -7,7 +7,8 @@ import {
 } from '@/lib/sanity/services';
 import { urlFor } from '@/lib/sanity/image';
 import Nav from '@/components/sections/Nav';
-import Hero from '@/components/sections/Hero';
+import { SocialLinks } from '@/components/sections/Hero';
+import RichText from '@/components/ui/RichText';
 import ProjectCard from '@/components/ui/ProjectCard';
 import ExperienceCard from '@/components/ui/ExperienceCard';
 import TechnologyCard from '@/components/ui/TechnologyCard';
@@ -31,14 +32,19 @@ export default async function Home() {
       <Nav />
       <main className="flex flex-col gap-8">
         {profile && (
-          <ScrollReveal trigger="load" stagger={0.15} direction="up">
-            <Hero
-              name={profile.name}
-              bio={profile.bio}
-              email={profile.email}
-              socialLinks={profile.socialLinks}
-            />
-          </ScrollReveal>
+          <section className="flex flex-col gap-4">
+            <ScrollReveal trigger="load" direction="up">
+              <SectionHeader text={profile.name} id="hero-heading" />
+            </ScrollReveal>
+            <ScrollReveal trigger="load" delay={0.15} direction="up">
+              <div className="max-w-2xl">
+                <RichText value={profile.bio} />
+              </div>
+            </ScrollReveal>
+            <ScrollReveal trigger="load" delay={0.3} stagger={0.08} direction="up">
+              <SocialLinks socialLinks={profile.socialLinks} email={profile.email} />
+            </ScrollReveal>
+          </section>
         )}
 
         {/* Sections: Projects, Technologies & ContactForm */}
@@ -56,7 +62,7 @@ export default async function Home() {
               />
             </ScrollReveal>
 
-            <ScrollReveal stagger={0.1}>
+            <ScrollReveal stagger={0.1} start="top 90%">
               <div className="grid grid-cols-2 gap-8">
                 {projects.map((project) => (
                   <ProjectCard
