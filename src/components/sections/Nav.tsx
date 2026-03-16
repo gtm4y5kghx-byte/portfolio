@@ -8,6 +8,10 @@ import {
   EnvelopeIcon,
 } from '@heroicons/react/24/outline';
 import { type ComponentType, type SVGProps } from 'react';
+import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 interface NavItem {
   label: string;
@@ -16,17 +20,22 @@ interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '#home', icon: HomeIcon },
-  { label: 'Recent Projects', href: '#projects', icon: FolderIcon },
-  { label: 'Work Experience', href: '#experience', icon: BriefcaseIcon },
-  { label: 'Languages', href: '#languages', icon: CodeBracketIcon },
-  { label: 'Contact', href: '#contact', icon: EnvelopeIcon },
+  { label: 'Home', href: '#hero-heading', icon: HomeIcon },
+  { label: 'Recent Projects', href: '#projects-heading', icon: FolderIcon },
+  { label: 'Work Experience', href: '#experience-heading', icon: BriefcaseIcon },
+  { label: 'Technologies', href: '#technologies-heading', icon: CodeBracketIcon },
+  { label: 'Contact', href: '#get-in-touch-heading', icon: EnvelopeIcon },
 ];
 
 export default function Nav() {
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    e.preventDefault();
+    gsap.to(window, { duration: 0.8, scrollTo: href, ease: 'power2.inOut' });
+  }
+
   return (
     <nav
-      className="bg-surface-sunken mx-auto mb-16 w-80 rounded-md px-4 py-2"
+      className="bg-surface-sunken sticky top-4 z-50 mx-auto mb-16 w-80 rounded-md px-4 py-2 shadow-md shadow-black/20"
       aria-label="Main navigation"
     >
       <ul className="flex items-center justify-between">
@@ -35,6 +44,7 @@ export default function Nav() {
             <a
               className="hover:text-primary block transition-colors"
               href={href}
+              onClick={(e) => handleClick(e, href)}
             >
               <Icon className="h-6 w-6" aria-hidden="true" />
               <span className="sr-only">{label}</span>

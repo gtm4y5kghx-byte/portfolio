@@ -17,7 +17,6 @@ const DIRECTIONS = {
 
 interface ScrollRevealProps {
   children: ReactNode;
-  className?: string;
   direction?: keyof typeof DIRECTIONS;
   delay?: number;
   duration?: number;
@@ -29,7 +28,6 @@ interface ScrollRevealProps {
 
 export default function ScrollReveal({
   children,
-  className,
   direction = 'up',
   delay = 0,
   duration = 0.5,
@@ -51,7 +49,6 @@ export default function ScrollReveal({
 
       if (prefersReducedMotion) {
         gsap.set(container.current, { clearProps: 'all' });
-        container.current.classList.remove('scroll-reveal-hidden');
         return;
       }
 
@@ -63,7 +60,6 @@ export default function ScrollReveal({
         : container.current;
 
       if (stagger && (!targets || (targets as HTMLCollection).length === 0)) {
-        // No children to stagger — just reveal the container
         gsap.set(container.current, { autoAlpha: 1 });
         return;
       }
@@ -94,7 +90,7 @@ export default function ScrollReveal({
   );
 
   return (
-    <div ref={container} className={`scroll-reveal-hidden ${className ?? ''}`}>
+    <div ref={container}>
       {children}
     </div>
   );
