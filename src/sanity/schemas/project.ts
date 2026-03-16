@@ -28,11 +28,13 @@ export const project = defineType({
       title: 'Thumbnail',
       type: 'image',
       options: { hotspot: true },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'url',
       title: 'URL',
       type: 'url',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'orderRank',

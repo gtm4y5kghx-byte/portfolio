@@ -16,17 +16,19 @@ export const profile = defineType({
       title: 'Bio',
       type: 'array',
       of: [defineArrayMember({ type: 'block' })],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'email',
       title: 'Email',
       type: 'string',
-      validation: (rule) => rule.email(),
+      validation: (rule) => rule.required().email(),
     }),
     defineField({
       name: 'socialLinks',
       title: 'Social Links',
       type: 'array',
+      validation: (rule) => rule.required(),
       of: [
         defineArrayMember({
           type: 'object',

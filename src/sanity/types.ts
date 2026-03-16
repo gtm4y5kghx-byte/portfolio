@@ -26,16 +26,16 @@ export type Settings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  siteTitle?: string;
-  seoDescription?: string;
-  seoImage?: {
+  siteTitle: string;
+  seoDescription: string;
+  seoImage: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
   };
-  footerContent?: Array<{
+  footerContent: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -57,18 +57,18 @@ export type Settings = {
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop';
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
 };
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot';
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+  x: number;
+  y: number;
+  height: number;
+  width: number;
 };
 
 export type Technology = {
@@ -77,7 +77,7 @@ export type Technology = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name: string;
 };
 
 export type Experience = {
@@ -86,9 +86,9 @@ export type Experience = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  company?: string;
-  role?: string;
-  description?: Array<{
+  company: string;
+  role: string;
+  description: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -106,7 +106,7 @@ export type Experience = {
     _type: 'block';
     _key: string;
   }>;
-  startDate?: string;
+  startDate: string;
   endDate?: string;
   orderRank?: number;
 };
@@ -117,23 +117,23 @@ export type Project = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
+  title: string;
+  slug: Slug;
   subtitle?: string;
-  thumbnail?: {
+  thumbnail: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
   };
-  url?: string;
+  url: string;
   orderRank?: number;
 };
 
 export type Slug = {
   _type: 'slug';
-  current?: string;
+  current: string;
   source?: string;
 };
 
@@ -143,8 +143,8 @@ export type Profile = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  bio?: Array<{
+  name: string;
+  bio: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -162,10 +162,10 @@ export type Profile = {
     _type: 'block';
     _key: string;
   }>;
-  email?: string;
-  socialLinks?: Array<{
-    platform?: 'github' | 'linkedin';
-    url?: string;
+  email: string;
+  socialLinks: Array<{
+    platform: 'github' | 'linkedin';
+    url: string;
     _key: string;
   }>;
 };
@@ -191,9 +191,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions';
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+  height: number;
+  width: number;
+  aspectRatio: number;
 };
 
 export type SanityImageMetadata = {
@@ -219,14 +219,14 @@ export type SanityFileAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   source?: SanityAssetSourceData;
 };
 
@@ -248,14 +248,14 @@ export type SanityImageAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
 };
@@ -297,8 +297,8 @@ export type PROFILE_QUERY_RESULT = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  bio?: Array<{
+  name: string;
+  bio: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -316,10 +316,10 @@ export type PROFILE_QUERY_RESULT = {
     _type: 'block';
     _key: string;
   }>;
-  email?: string;
-  socialLinks?: Array<{
-    platform?: 'github' | 'linkedin';
-    url?: string;
+  email: string;
+  socialLinks: Array<{
+    platform: 'github' | 'linkedin';
+    url: string;
     _key: string;
   }>;
 } | null;
@@ -333,17 +333,17 @@ export type PROJECTS_QUERY_RESULT = Array<{
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
+  title: string;
+  slug: Slug;
   subtitle?: string;
-  thumbnail?: {
+  thumbnail: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
   };
-  url?: string;
+  url: string;
   orderRank?: number;
 }>;
 
@@ -356,9 +356,9 @@ export type EXPERIENCES_QUERY_RESULT = Array<{
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  company?: string;
-  role?: string;
-  description?: Array<{
+  company: string;
+  role: string;
+  description: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -376,7 +376,7 @@ export type EXPERIENCES_QUERY_RESULT = Array<{
     _type: 'block';
     _key: string;
   }>;
-  startDate?: string;
+  startDate: string;
   endDate?: string;
   orderRank?: number;
 }>;
@@ -390,7 +390,7 @@ export type TECHNOLOGIES_QUERY_RESULT = Array<{
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name: string;
 }>;
 
 // Source: src/lib/sanity/queries.ts
@@ -402,16 +402,16 @@ export type SETTINGS_QUERY_RESULT = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  siteTitle?: string;
-  seoDescription?: string;
-  seoImage?: {
+  siteTitle: string;
+  seoDescription: string;
+  seoImage: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
   };
-  footerContent?: Array<{
+  footerContent: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;

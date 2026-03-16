@@ -2,8 +2,12 @@
 import { faker } from '@faker-js/faker';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import ContactForm from '../ContactForm';
+
+vi.mock('@/app/actions/contact', () => ({
+  submitContact: vi.fn(),
+}));
 
 describe('ContactForm', () => {
   it('renders a name input', () => {

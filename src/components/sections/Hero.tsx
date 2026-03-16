@@ -13,10 +13,7 @@ const SOCIAL_ICONS = {
   },
 } as const;
 
-interface SocialLink {
-  platform: keyof typeof SOCIAL_ICONS;
-  url: string;
-}
+type Platform = keyof typeof SOCIAL_ICONS;
 
 const EMAIL_ICON = {
   label: 'Email',
@@ -25,9 +22,9 @@ const EMAIL_ICON = {
 
 interface HeroProps {
   name: string;
-  bio?: PortableTextValue;
-  email?: string;
-  socialLinks?: SocialLink[];
+  bio: PortableTextValue;
+  email: string;
+  socialLinks: Array<{ platform: Platform; url: string }>;
 }
 
 export default function Hero({ name, bio, email, socialLinks }: HeroProps) {
@@ -35,16 +32,13 @@ export default function Hero({ name, bio, email, socialLinks }: HeroProps) {
     <section className="flex flex-col gap-4">
       <div className="gap-content flex flex-col">
         <SectionHeader text={name} id="projects-heading" />
-        {bio && (
-          <div className="max-w-2xl">
-            <RichText value={bio} />
-          </div>
-        )}
+        <div className="max-w-2xl">
+          <RichText value={bio} />
+        </div>
       </div>
 
-      {(socialLinks?.length || email) && (
-        <ul className="flex gap-3">
-          {socialLinks?.map(({ platform, url }) => {
+      <ul className="flex gap-3">
+        {socialLinks.map(({ platform, url }) => {
             const icon = SOCIAL_ICONS[platform];
             return (
               <li key={platform}>
@@ -66,26 +60,23 @@ export default function Hero({ name, bio, email, socialLinks }: HeroProps) {
               </li>
             );
           })}
-          {email && (
-            <li>
-              <a
-                href={`mailto:${email}`}
-                aria-label={EMAIL_ICON.label}
-                className="bg-primary duration-default hover:bg-surface inline-block rounded-full p-2 text-white transition-colors"
+          <li>
+            <a
+              href={`mailto:${email}`}
+              aria-label={EMAIL_ICON.label}
+              className="bg-primary duration-default hover:bg-surface inline-block rounded-full p-2 text-white transition-colors"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+                className="h-5 w-5"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-5 w-5"
-                >
-                  <path d={EMAIL_ICON.path} />
-                </svg>
-              </a>
-            </li>
-          )}
-        </ul>
-      )}
+                <path d={EMAIL_ICON.path} />
+              </svg>
+            </a>
+          </li>
+      </ul>
     </section>
   );
 }

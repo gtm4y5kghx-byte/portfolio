@@ -4,10 +4,10 @@ import RichText from '@/components/ui/RichText';
 
 interface ExperienceCardProps {
   company: string;
-  role?: string;
-  description?: PortableTextValue;
+  role: string;
+  description: PortableTextValue;
   startDate: string;
-  endDate: string;
+  endDate?: string;
 }
 
 export default function ExperienceCard({
@@ -22,11 +22,11 @@ export default function ExperienceCard({
       <div className="flex items-baseline justify-between">
         <h3 className="text-2xl font-bold">{company}</h3>
         <time className="text-sm text-white/60">
-          {startDate} - {endDate}
+          {startDate} - {endDate ?? 'Present'}
         </time>
       </div>
-      {role && <p className="text-primary text-sm font-semibold">{role}</p>}
-      {description && <RichText value={description} />}
+      <p className="text-primary text-sm font-semibold">{role}</p>
+      <RichText value={description} />
     </Card>
   );
 }

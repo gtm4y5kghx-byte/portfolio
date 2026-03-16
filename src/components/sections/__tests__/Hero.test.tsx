@@ -6,6 +6,18 @@ import Hero from '../Hero';
 
 const defaultProps = {
   name: faker.person.fullName(),
+  bio: [
+    {
+      _type: 'block' as const,
+      _key: 'k1',
+      children: [{ _type: 'span' as const, _key: 's1', text: 'Hello world' }],
+    },
+  ],
+  email: faker.internet.email(),
+  socialLinks: [
+    { platform: 'github' as const, url: 'https://github.com/test' },
+    { platform: 'linkedin' as const, url: 'https://linkedin.com/in/test' },
+  ],
 };
 
 describe('Hero', () => {
@@ -16,29 +28,13 @@ describe('Hero', () => {
     );
   });
 
-  it('renders bio when provided', () => {
-    const bio = [
-      {
-        _type: 'block',
-        _key: 'k1',
-        children: [{ _type: 'span', _key: 's1', text: 'Hello world' }],
-      },
-    ];
-    render(<Hero {...defaultProps} bio={bio} />);
+  it('renders bio', () => {
+    render(<Hero {...defaultProps} />);
     expect(screen.getByText('Hello world')).toBeInTheDocument();
   });
 
-  it('does not render bio when not provided', () => {
-    const { container } = render(<Hero {...defaultProps} />);
-    expect(container.querySelector('.max-w-2xl')).not.toBeInTheDocument();
-  });
-
   it('renders social links with correct aria labels', () => {
-    const socialLinks = [
-      { platform: 'github' as const, url: 'https://github.com/test' },
-      { platform: 'linkedin' as const, url: 'https://linkedin.com/in/test' },
-    ];
-    render(<Hero {...defaultProps} socialLinks={socialLinks} />);
+    render(<Hero {...defaultProps} />);
     expect(screen.getByLabelText('GitHub')).toHaveAttribute(
       'href',
       'https://github.com/test',
@@ -49,28 +45,15 @@ describe('Hero', () => {
     );
   });
 
-  it('does not render social links when not provided', () => {
-    render(<Hero {...defaultProps} />);
-    expect(screen.queryByRole('list')).not.toBeInTheDocument();
-  });
-
   it('opens social links in a new tab', () => {
-    const socialLinks = [
-      { platform: 'github' as const, url: 'https://github.com/test' },
-    ];
-    render(<Hero {...defaultProps} socialLinks={socialLinks} />);
+    render(<Hero {...defaultProps} />);
     expect(screen.getByLabelText('GitHub')).toHaveAttribute('target', '_blank');
   });
 
   it('renders email link as mailto', () => {
-    render(<Hero {...defaultProps} email="me@jasenmp.com" />);
-    const link = screen.getByLabelText('Email');
-    expect(link).toHaveAttribute('href', 'mailto:me@jasenmp.com');
-    expect(link).not.toHaveAttribute('target');
-  });
-
-  it('does not render email link when not provided', () => {
     render(<Hero {...defaultProps} />);
-    expect(screen.queryByLabelText('Email')).not.toBeInTheDocument();
+    const link = screen.getByLabelText('Email');
+    expect(link).toHaveAttribute('href', `mailto:${defaultProps.email}`);
+    expect(link).not.toHaveAttribute('target');
   });
 });

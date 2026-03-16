@@ -15,12 +15,14 @@ export const experience = defineType({
       name: 'role',
       title: 'Role',
       type: 'string',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'array',
       of: [defineArrayMember({ type: 'block' })],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'startDate',
@@ -33,7 +35,7 @@ export const experience = defineType({
       name: 'endDate',
       title: 'End Date',
       type: 'string',
-      description: 'e.g. March 2026 — leave empty for current position',
+      description: 'Leave empty for current position',
     }),
     defineField({
       name: 'orderRank',

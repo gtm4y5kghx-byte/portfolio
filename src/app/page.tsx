@@ -14,6 +14,7 @@ import TechnologyCard from '@/components/ui/TechnologyCard';
 import ContactForm from '@/components/sections/ContactForm';
 import Footer from '@/components/sections/Footer';
 import SectionHeader from '@/components/sections/SectionHeader';
+import ScrollReveal from '@/components/animations/SrollReveal';
 
 export default async function Home() {
   const [profile, projects, experiences, technologies, settings] =
@@ -25,55 +26,57 @@ export default async function Home() {
       getSettings(),
     ]);
 
-  const publishedProjects = projects.filter((p) => !!p.url);
-
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8">
       <Nav />
       <main className="flex flex-col gap-8">
         {profile && (
-          <Hero
-            name={profile.name}
-            bio={profile.bio}
-            email={profile.email}
-            socialLinks={profile.socialLinks?.map(({ platform, url }) => ({
-              platform,
-              url,
-            }))}
-          />
+          <ScrollReveal trigger="load" stagger={0.15} direction="up">
+            <Hero
+              name={profile.name}
+              bio={profile.bio}
+              email={profile.email}
+              socialLinks={profile.socialLinks}
+            />
+          </ScrollReveal>
         )}
 
         {/* Sections: Projects, Technologies & ContactForm */}
 
-        {publishedProjects.length > 0 && (
+        {projects.length > 0 && (
           <section
             className="gap-content flex flex-col"
             aria-labelledby="projects-heading"
           >
-            <SectionHeader
-              text="Recent Projects"
-              id="projects-heading"
-              as="h2"
-            />
-            <div className="grid grid-cols-2 gap-8">
-              {publishedProjects.map((project) => (
-                <ProjectCard
-                  key={project._id}
-                  title={project.title}
-                  subtitle={project.subtitle}
-                  url={project.url!}
-                  thumbnailUrl={
-                    project.thumbnail
-                      ? urlFor(project.thumbnail)
-                          .width(960)
-                          .format('webp')
-                          .quality(80)
-                          .url()
-                      : undefined
-                  }
-                />
-              ))}
-            </div>
+            <ScrollReveal>
+              <SectionHeader
+                text="Recent Projects"
+                id="projects-heading"
+                as="h2"
+              />
+            </ScrollReveal>
+
+            <ScrollReveal stagger={0.1}>
+              <div className="grid grid-cols-2 gap-8">
+                {projects.map((project) => (
+                  <ProjectCard
+                    key={project._id}
+                    title={project.title}
+                    subtitle={project.subtitle}
+                    url={project.url}
+                    thumbnailUrl={
+                      project.thumbnail
+                        ? urlFor(project.thumbnail)
+                            .width(960)
+                            .format('webp')
+                            .quality(80)
+                            .url()
+                        : undefined
+                    }
+                  />
+                ))}
+              </div>
+            </ScrollReveal>
           </section>
         )}
 
@@ -82,23 +85,28 @@ export default async function Home() {
             className="gap-content flex max-w-3xl flex-col"
             aria-labelledby="experience-heading"
           >
-            <SectionHeader
-              text="Work Experience"
-              id="experience-heading"
-              as="h2"
-            />
-            <div className="divide-y divide-white/10">
-              {experiences.map((exp) => (
-                <ExperienceCard
-                  key={exp._id}
-                  company={exp.company}
-                  role={exp.role}
-                  description={exp.description}
-                  startDate={exp.startDate}
-                  endDate={exp.endDate ?? 'Present'}
-                />
-              ))}
-            </div>
+            <ScrollReveal>
+              <SectionHeader
+                text="Work Experience"
+                id="experience-heading"
+                as="h2"
+              />
+            </ScrollReveal>
+
+            <ScrollReveal stagger={0.12}>
+              <div className="divide-y divide-white/10">
+                {experiences.map((exp) => (
+                  <ExperienceCard
+                    key={exp._id}
+                    company={exp.company}
+                    role={exp.role}
+                    description={exp.description}
+                    startDate={exp.startDate}
+                    endDate={exp.endDate}
+                  />
+                ))}
+              </div>
+            </ScrollReveal>
           </section>
         )}
 
@@ -107,16 +115,21 @@ export default async function Home() {
             className="gap-content flex max-w-3xl flex-col"
             aria-labelledby="technologies-heading"
           >
-            <SectionHeader
-              text="Technologies"
-              id="technologies-heading"
-              as="h2"
-            />
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {technologies.map((tech) => (
-                <TechnologyCard key={tech._id} name={tech.name} />
-              ))}
-            </div>
+            <ScrollReveal>
+              <SectionHeader
+                text="Technologies"
+                id="technologies-heading"
+                as="h2"
+              />
+            </ScrollReveal>
+
+            <ScrollReveal stagger={0.05}>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+                {technologies.map((tech) => (
+                  <TechnologyCard key={tech._id} name={tech.name} />
+                ))}
+              </div>
+            </ScrollReveal>
           </section>
         )}
 
@@ -124,16 +137,21 @@ export default async function Home() {
           className="gap-content flex max-w-3xl flex-col"
           aria-labelledby="get-in-touch-heading"
         >
-          <SectionHeader
-            text="Get in Touch"
-            id="get-in-touch-heading"
-            as="h2"
-          />
-          <ContactForm />
+          <ScrollReveal>
+            <SectionHeader
+              text="Get in Touch"
+              id="get-in-touch-heading"
+              as="h2"
+            />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <ContactForm />
+          </ScrollReveal>
         </section>
       </main>
 
-      {settings?.footerContent && <Footer content={settings.footerContent} />}
+      {settings && <Footer content={settings.footerContent} />}
     </div>
   );
 }

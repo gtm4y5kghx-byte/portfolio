@@ -16,18 +16,21 @@ export const settings = defineType({
       title: 'SEO Description',
       type: 'text',
       rows: 3,
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'seoImage',
       title: 'Default OG Image',
       type: 'image',
       options: { hotspot: true },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'footerContent',
       title: 'Footer Content',
       type: 'array',
       of: [defineArrayMember({ type: 'block' })],
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

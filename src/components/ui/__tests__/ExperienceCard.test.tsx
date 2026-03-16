@@ -52,9 +52,4 @@ describe('ExperienceCard', () => {
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
-  it('does not render a role when not provided', () => {
-    const { role, ...rest } = defaultProps;
-    render(<ExperienceCard {...rest} />);
-    expect(screen.queryByText(defaultProps.role)).not.toBeInTheDocument();
-  });
 });
