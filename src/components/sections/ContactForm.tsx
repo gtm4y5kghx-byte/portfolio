@@ -29,12 +29,25 @@ export default function ContactForm() {
           messages={["Thanks! I'll be in touch."]}
         />
       )}
-      {state && !state.success && (
+      {state && !state.success && state.message && (
+        <Alert variant="error" title="Error" messages={[state.message]} />
+      )}
+      {state && !state.success && state.errors && (
         <Alert
           variant="error"
           messages={Object.values(state.errors).filter(Boolean) as string[]}
         />
       )}
+
+      {/* Honeypot — hidden from real users, bots fill it in */}
+      <input
+        name="company"
+        type="text"
+        autoComplete="off"
+        tabIndex={-1}
+        aria-hidden="true"
+        className="absolute -left-2499.75 h-0 w-0 overflow-hidden opacity-0"
+      />
 
       {/* Name + Email */}
       <div className="grid grid-cols-2 gap-6">
