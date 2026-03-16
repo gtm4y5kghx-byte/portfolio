@@ -28,7 +28,7 @@ export default async function Home() {
     ]);
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8">
+    <div className="mx-auto flex w-full flex-col gap-8 px-4 py-8 md:max-w-5xl">
       <Nav />
       <main className="flex flex-col gap-8">
         {profile && (
@@ -63,7 +63,7 @@ export default async function Home() {
             </ScrollReveal>
 
             <ScrollReveal stagger={0.1} start="top 90%">
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 {projects.map((project) => (
                   <ProjectCard
                     key={project._id}
@@ -88,7 +88,7 @@ export default async function Home() {
 
         {experiences.length > 0 && (
           <section
-            className="gap-content flex max-w-3xl flex-col"
+            className="gap-content flex w-full flex-col md:max-w-3xl"
             aria-labelledby="experience-heading"
           >
             <ScrollReveal>
@@ -118,7 +118,7 @@ export default async function Home() {
 
         {technologies.length > 0 && (
           <section
-            className="gap-content flex max-w-3xl flex-col"
+            className="gap-content flex w-full flex-col md:max-w-3xl"
             aria-labelledby="technologies-heading"
           >
             <ScrollReveal>
@@ -140,7 +140,7 @@ export default async function Home() {
         )}
 
         <section
-          className="gap-content flex max-w-3xl flex-col"
+          className="gap-content flex w-full flex-col md:max-w-3xl"
           aria-labelledby="get-in-touch-heading"
         >
           <ScrollReveal>

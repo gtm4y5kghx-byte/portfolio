@@ -8,7 +8,7 @@ interface SectionHeaderProps {
 export default function SectionHeader({
   text,
   as: Tag = 'h1',
-  className = 'text-8xl leading-none font-bold tracking-tight uppercase',
+  className = 'text-5xl md:text-6xl lg:text-8xl leading-none font-bold tracking-tight uppercase',
   id,
 }: SectionHeaderProps) {
   const spaceIndex = text.indexOf(' ');
