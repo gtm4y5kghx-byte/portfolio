@@ -3,6 +3,7 @@ import {
   getProjects,
   getExperiences,
   getTechnologies,
+  getTestimonials,
   getSettings,
 } from '@/lib/sanity/services';
 import { urlFor } from '@/lib/sanity/image';
@@ -12,18 +13,20 @@ import RichText from '@/components/ui/RichText';
 import ProjectCard from '@/components/ui/ProjectCard';
 import ExperienceCard from '@/components/ui/ExperienceCard';
 import TechnologyCard from '@/components/ui/TechnologyCard';
+import ReferenceCarousel from '@/components/ui/ReferenceCarousel';
 import ContactForm from '@/components/sections/ContactForm';
 import Footer from '@/components/sections/Footer';
 import SectionHeader from '@/components/sections/SectionHeader';
 import ScrollReveal from '@/components/animations/SrollReveal';
 
 export default async function Home() {
-  const [profile, projects, experiences, technologies, settings] =
+  const [profile, projects, experiences, technologies, testimonials, settings] =
     await Promise.all([
       getProfile(),
       getProjects(),
       getExperiences(),
       getTechnologies(),
+      getTestimonials(),
       getSettings(),
     ]);
 
@@ -41,8 +44,16 @@ export default async function Home() {
                 <RichText value={profile.bio} />
               </div>
             </ScrollReveal>
-            <ScrollReveal trigger="load" delay={0.3} stagger={0.08} direction="up">
-              <SocialLinks socialLinks={profile.socialLinks} email={profile.email} />
+            <ScrollReveal
+              trigger="load"
+              delay={0.3}
+              stagger={0.08}
+              direction="up"
+            >
+              <SocialLinks
+                socialLinks={profile.socialLinks}
+                email={profile.email}
+              />
             </ScrollReveal>
           </section>
         )}
@@ -112,6 +123,25 @@ export default async function Home() {
                   />
                 ))}
               </div>
+            </ScrollReveal>
+          </section>
+        )}
+
+        {testimonials.length > 0 && (
+          <section
+            className="gap-content flex w-full flex-col md:max-w-3xl"
+            aria-labelledby="references-heading"
+          >
+            <ScrollReveal>
+              <SectionHeader
+                text="What People Say"
+                id="references-heading"
+                as="h2"
+              />
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <ReferenceCarousel testimonials={testimonials} />
             </ScrollReveal>
           </section>
         )}
