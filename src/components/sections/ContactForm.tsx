@@ -1,21 +1,41 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useState, useActionState } from 'react';
 import { submitContact } from '@/app/actions/contact';
+import Alert from '@/components/ui/Alert';
 
 export default function ContactForm() {
-  const [state, formAction, isPending] = useActionState(submitContact, null);
-
-  if (state?.success) {
-    return (
-      <p className="text-success text-lg font-semibold">
-        Thanks! I&apos;ll be in touch.
-      </p>
-    );
-  }
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [state, formAction, isPending] = useActionState(
+    async (prev: Awaited<ReturnType<typeof submitContact>> | null, formData: FormData) => {
+      const result = await submitContact(prev, formData);
+      if (result.success) {
+        setName('');
+        setEmail('');
+        setMessage('');
+      }
+      return result;
+    },
+    null,
+  );
 
   return (
     <form action={formAction} className="flex flex-col gap-6">
+      {state?.success && (
+        <Alert
+          variant="success"
+          messages={["Thanks! I'll be in touch."]}
+        />
+      )}
+      {state && !state.success && (
+        <Alert
+          variant="error"
+          messages={Object.values(state.errors).filter(Boolean) as string[]}
+        />
+      )}
+
       {/* Name + Email */}
       <div className="grid grid-cols-2 gap-6">
         <div className="flex flex-col gap-2">
@@ -26,11 +46,10 @@ export default function ContactForm() {
             id="name"
             name="name"
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="bg-surface text-fg focus:ring-primary duration-default rounded-lg border-0 shadow-inner transition-shadow focus:ring-2"
           />
-          {state?.errors?.name && (
-            <p className="text-error text-sm">{state.errors.name}</p>
-          )}
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="text-fg-muted text-md font-bold">
@@ -40,11 +59,10 @@ export default function ContactForm() {
             id="email"
             name="email"
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="bg-surface text-fg focus:ring-primary duration-default rounded-lg border-0 shadow-inner transition-shadow focus:ring-2"
           />
-          {state?.errors?.email && (
-            <p className="text-error text-sm">{state.errors.email}</p>
-          )}
         </div>
       </div>
 
@@ -57,11 +75,10 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={5}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           className="bg-surface text-fg focus:ring-primary duration-default rounded-lg border-0 shadow-inner transition-shadow focus:ring-2"
         />
-        {state?.errors?.message && (
-          <p className="text-error text-sm">{state.errors.message}</p>
-        )}
       </div>
 
       {/* Submit */}

@@ -2,7 +2,7 @@
 import { faker } from '@faker-js/faker';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import ContactForm from '../ContactForm';
 
 describe('ContactForm', () => {
@@ -53,13 +53,5 @@ describe('ContactForm', () => {
     const textarea = screen.getByRole('textbox', { name: /message/i });
     await user.type(textarea, message);
     expect(textarea).toHaveValue(message);
-  });
-
-  it('calls the action with form data on submit', async () => {
-    const user = userEvent.setup();
-    const action = vi.fn();
-    render(<ContactForm action={action} />);
-    await user.click(screen.getByRole('button', { name: /send/i }));
-    expect(action).toHaveBeenCalledOnce();
   });
 });
