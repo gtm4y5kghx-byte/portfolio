@@ -2,6 +2,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import {
   getProfile,
   getProjects,
+  getProjectBySlug,
   getExperiences,
   getTechnologies,
   getTestimonials,
@@ -10,6 +11,7 @@ import {
 import {
   PROFILE_QUERY,
   PROJECTS_QUERY,
+  PROJECT_BY_SLUG_QUERY,
   EXPERIENCES_QUERY,
   TECHNOLOGIES_QUERY,
   TESTIMONIALS_QUERY,
@@ -55,6 +57,18 @@ describe('Sanity services', () => {
 
     expect(mockFetch).toHaveBeenCalledWith(PROJECTS_QUERY);
     expect(result).toEqual(mockProjects);
+  });
+
+  it('getProjectBySlug fetches with PROJECT_BY_SLUG_QUERY and slug param', async () => {
+    const mockProject = createMockProject();
+    mockFetch.mockResolvedValue(mockProject);
+
+    const result = await getProjectBySlug('my-project');
+
+    expect(mockFetch).toHaveBeenCalledWith(PROJECT_BY_SLUG_QUERY, {
+      slug: 'my-project',
+    });
+    expect(result).toEqual(mockProject);
   });
 
   it('getExperiences fetches with EXPERIENCES_QUERY', async () => {

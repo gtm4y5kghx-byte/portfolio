@@ -2,6 +2,7 @@ import { client } from './client';
 import {
   PROFILE_QUERY,
   PROJECTS_QUERY,
+  PROJECT_BY_SLUG_QUERY,
   EXPERIENCES_QUERY,
   TECHNOLOGIES_QUERY,
   TESTIMONIALS_QUERY,
@@ -14,6 +15,10 @@ export async function getProfile() {
 
 export async function getProjects() {
   return client.fetch(PROJECTS_QUERY);
+}
+
+export async function getProjectBySlug(slug: string) {
+  return client.fetch(PROJECT_BY_SLUG_QUERY, { slug });
 }
 
 export async function getExperiences() {

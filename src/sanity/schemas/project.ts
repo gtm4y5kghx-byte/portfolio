@@ -24,20 +24,32 @@ export const project = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'thumbnail',
-      title: 'Thumbnail',
+      name: 'projectImage',
+      title: 'Project Image',
       type: 'image',
       options: { hotspot: true },
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
       name: 'url',
       title: 'URL',
       type: 'url',
-      validation: (rule) => rule.required(),
+      description: 'Live project URL',
+    }),
+    defineField({
+      name: 'githubUrl',
+      title: 'GitHub URL',
+      type: 'url',
+      description: 'Source code repository',
     }),
   ],
   preview: {
-    select: { title: 'title', subtitle: 'subtitle', media: 'thumbnail' },
+    select: { title: 'title', subtitle: 'subtitle', media: 'projectImage' },
   },
 });

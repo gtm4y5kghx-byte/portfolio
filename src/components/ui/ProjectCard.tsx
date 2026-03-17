@@ -1,30 +1,27 @@
-import Card from '@/components/ui/Card';
+import Link from 'next/link';
 
 interface ProjectCardProps {
   title: string;
+  slug: string;
   subtitle?: string;
-  url: string;
-  thumbnailUrl?: string;
-  thumbnailAlt?: string;
+  imageUrl?: string;
 }
 
 export default function ProjectCard({
   title,
+  slug,
   subtitle,
-  url,
-  thumbnailUrl,
-  thumbnailAlt,
+  imageUrl,
 }: ProjectCardProps) {
   return (
-    <Card
-      as="a"
-      href={url}
+    <Link
+      href={`/projects/${slug}`}
       className="group relative overflow-hidden rounded-lg shadow-lg"
     >
-      {thumbnailUrl && (
+      {imageUrl && (
         <img
-          src={thumbnailUrl}
-          alt={thumbnailAlt ?? ''}
+          src={imageUrl}
+          alt=""
           className="duration-default aspect-video w-full object-cover transition-transform group-hover:scale-105"
         />
       )}
@@ -54,6 +51,6 @@ export default function ProjectCard({
           </svg>
         </div>
       </div>
-    </Card>
+    </Link>
   );
 }

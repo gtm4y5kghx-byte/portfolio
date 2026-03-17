@@ -6,10 +6,9 @@ import ProjectCard from '../ProjectCard';
 
 const defaultProps = {
   title: faker.commerce.productName(),
+  slug: faker.helpers.slugify(faker.commerce.productName()).toLowerCase(),
   subtitle: faker.commerce.productDescription(),
-  url: faker.internet.url(),
-  thumbnailUrl: faker.image.url(),
-  thumbnailAlt: faker.lorem.sentence(),
+  imageUrl: faker.image.url(),
 };
 
 describe('ProjectCard', () => {
@@ -29,20 +28,23 @@ describe('ProjectCard', () => {
     expect(screen.queryByText(defaultProps.subtitle)).not.toBeInTheDocument();
   });
 
-  it('renders as a link to the project url', () => {
+  it('renders as a link to the project detail page', () => {
     render(<ProjectCard {...defaultProps} />);
-    expect(screen.getByRole('link')).toHaveAttribute('href', defaultProps.url);
+    expect(screen.getByRole('link')).toHaveAttribute(
+      'href',
+      `/projects/${defaultProps.slug}`,
+    );
   });
 
-  it('renders the thumbnail with alt text', () => {
-    render(<ProjectCard {...defaultProps} />);
-    const img = screen.getByRole('img', { name: defaultProps.thumbnailAlt });
-    expect(img).toHaveAttribute('src', defaultProps.thumbnailUrl);
+  it('renders the image when imageUrl is provided', () => {
+    const { container } = render(<ProjectCard {...defaultProps} />);
+    const img = container.querySelector('img');
+    expect(img).toHaveAttribute('src', defaultProps.imageUrl);
   });
 
-  it('does not render an image when thumbnailUrl is not provided', () => {
-    const { thumbnailUrl, thumbnailAlt, ...rest } = defaultProps;
-    render(<ProjectCard {...rest} />);
-    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  it('does not render an image when imageUrl is not provided', () => {
+    const { imageUrl, ...rest } = defaultProps;
+    const { container } = render(<ProjectCard {...rest} />);
+    expect(container.querySelector('img')).not.toBeInTheDocument();
   });
 });

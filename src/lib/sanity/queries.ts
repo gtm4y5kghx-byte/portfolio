@@ -7,4 +7,7 @@ export const TECHNOLOGIES_QUERY = defineQuery(`*[_type == "technology"]`);
 export const TESTIMONIALS_QUERY = defineQuery(
   `*[_type == "testimonial"] | order(orderRank asc)`,
 );
+export const PROJECT_BY_SLUG_QUERY = defineQuery(
+  `*[_type == "project" && slug.current == $slug][0]`,
+);
 export const SETTINGS_QUERY = defineQuery(`*[_type == "settings"][0]`);

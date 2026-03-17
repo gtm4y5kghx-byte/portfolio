@@ -23,10 +23,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  project,
+}: Readonly<{ children: React.ReactNode; project: React.ReactNode }>) {
   return (
     <html lang="en" className={`${outfit.variable} antialiased`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {project}
+      </body>
     </html>
   );
 }

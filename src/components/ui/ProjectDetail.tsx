@@ -1,0 +1,88 @@
+import RichText, { type PortableTextValue } from './RichText';
+import { SOCIAL_ICONS } from '@/lib/icons';
+
+interface ProjectDetailProps {
+  title: string;
+  subtitle?: string;
+  imageUrl?: string;
+  content?: PortableTextValue;
+  url?: string;
+  githubUrl?: string;
+}
+
+export default function ProjectDetail({
+  title,
+  subtitle,
+  imageUrl,
+  content,
+  url,
+  githubUrl,
+}: ProjectDetailProps) {
+  return (
+    <article className="flex flex-col gap-8">
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt=""
+          className="aspect-video w-full rounded-lg object-cover"
+        />
+      )}
+
+      <div className="flex flex-col gap-4">
+        <div>
+          <h1 className="text-4xl font-bold">{title}</h1>
+          {subtitle && <p className="text-fg-muted mt-1 text-lg">{subtitle}</p>}
+        </div>
+
+        {(url || githubUrl) && (
+          <div className="flex gap-3">
+            {url && (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary duration-default hover:bg-surface inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white transition-colors"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+                Visit Site
+              </a>
+            )}
+            {githubUrl && (
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 duration-default hover:bg-white/20 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white transition-colors"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                >
+                  <path d={SOCIAL_ICONS.github.path} />
+                </svg>
+                Source Code
+              </a>
+            )}
+          </div>
+        )}
+
+        <RichText value={content} />
+      </div>
+    </article>
+  );
+}

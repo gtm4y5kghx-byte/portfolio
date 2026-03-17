@@ -24,8 +24,10 @@ export function createMockProject() {
         .toLowerCase(),
     },
     subtitle: faker.commerce.productDescription(),
-    thumbnail: null,
-    url: faker.internet.url(),
+    projectImage: null,
+    content: [],
+    url: faker.helpers.maybe(() => faker.internet.url()) ?? null,
+    githubUrl: faker.helpers.maybe(() => faker.internet.url()) ?? null,
   };
 }
 

@@ -79,11 +79,11 @@ export default async function Home() {
                   <ProjectCard
                     key={project._id}
                     title={project.title}
+                    slug={project.slug.current}
                     subtitle={project.subtitle}
-                    url={project.url}
-                    thumbnailUrl={
-                      project.thumbnail
-                        ? urlFor(project.thumbnail)
+                    imageUrl={
+                      project.projectImage
+                        ? urlFor(project.projectImage)
                             .width(960)
                             .format('webp')
                             .quality(80)
