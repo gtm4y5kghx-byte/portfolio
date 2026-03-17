@@ -32,8 +32,10 @@ export default function ProjectDetail({
       <ScrollReveal trigger="load" stagger={0.1} direction="up">
         <div className="flex flex-col gap-4 px-8">
           <div>
-            <h1 className="text-4xl font-bold">{title}</h1>
-            {subtitle && <p className="text-fg-muted mt-1 text-lg">{subtitle}</p>}
+            <h1 className="text-accent text-4xl font-bold">{title}</h1>
+            {subtitle && (
+              <p className="text-fg-muted mt-1 text-lg">{subtitle}</p>
+            )}
           </div>
 
           {(url || githubUrl) && (
@@ -67,7 +69,7 @@ export default function ProjectDetail({
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/10 duration-default hover:bg-white/20 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white transition-colors"
+                  className="duration-default inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
                 >
                   <svg
                     viewBox="0 0 24 24"
