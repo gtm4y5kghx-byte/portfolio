@@ -57,7 +57,7 @@ export default function ProjectOverlay({
           </button>
         </div>
 
-        <div className="px-8 pb-8">{children}</div>
+        <div className="pb-8">{children}</div>
       </div>
     </div>
   );
