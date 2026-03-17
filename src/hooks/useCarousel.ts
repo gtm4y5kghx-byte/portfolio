@@ -1,4 +1,10 @@
-import { useRef, useState, useCallback, useEffect, type RefObject } from 'react';
+import {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  type RefObject,
+} from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -31,7 +37,6 @@ export function useCarousel(
         x: -30,
         duration: 0.3,
       });
-
       tl.to(
         currentSlide.querySelector('[data-author]'),
         { opacity: 0, x: -20, duration: 0.2 },
@@ -48,14 +53,12 @@ export function useCarousel(
         { opacity: 0, x: 30 },
         { opacity: 1, x: 0, duration: 0.4 },
       );
-
       tl.fromTo(
         nextSlide.querySelector('[data-author]'),
         { opacity: 0, x: 20 },
         { opacity: 1, x: 0, duration: 0.3 },
         '<0.15',
       );
-
     },
     [activeIndex, slidesRef],
   );
@@ -82,8 +85,12 @@ export function useCarousel(
     return () => clearInterval(timer);
   }, [activeIndex, count, goToSlide, slidesRef]);
 
-  const pause = useCallback(() => { isPaused.current = true; }, []);
-  const resume = useCallback(() => { isPaused.current = false; }, []);
+  const pause = useCallback(() => {
+    isPaused.current = true;
+  }, []);
+  const resume = useCallback(() => {
+    isPaused.current = false;
+  }, []);
 
   return { activeIndex, goToSlide, pause, resume };
 }
