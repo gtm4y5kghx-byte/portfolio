@@ -19,8 +19,8 @@ export default function ReferenceSlide({
         <p className="text-lg">&ldquo;{quote}&rdquo;</p>
       </blockquote>
       <div data-author>
-        <p className="text-md">{author}</p>
-        <p className="text-primary text-sm font-bold">
+        <p className="text-md text-primary">{author}</p>
+        <p className="text-sm font-bold">
           {role}, {company}
         </p>
       </div>
