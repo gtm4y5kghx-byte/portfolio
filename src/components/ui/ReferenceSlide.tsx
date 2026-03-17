@@ -16,11 +16,11 @@ export default function ReferenceSlide({
   return (
     <div className="gap-content flex flex-col">
       <blockquote data-quote>
-        <p>&ldquo;{quote}&rdquo;</p>
+        <p className="text-lg">&ldquo;{quote}&rdquo;</p>
       </blockquote>
       <div data-author>
-        <p className="text-3xl">{author}</p>
-        <p className="text-primary font-bold">
+        <p className="text-md">{author}</p>
+        <p className="text-primary text-sm font-bold">
           {role}, {company}
         </p>
       </div>
