@@ -20,7 +20,7 @@ export default function ReferenceSlide({
       </blockquote>
       <div data-author>
         <p className="text-md text-primary">{author}</p>
-        <p className="text-sm font-bold">
+        <p className="text-sm">
           {role}, {company}
         </p>
       </div>
