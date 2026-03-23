@@ -24,10 +24,13 @@ export function createMockProject() {
         .toLowerCase(),
     },
     subtitle: faker.commerce.productDescription(),
+    displayMode: 'image' as const,
     projectImage: null,
     content: [],
     url: faker.helpers.maybe(() => faker.internet.url()) ?? null,
-    githubUrl: faker.helpers.maybe(() => faker.internet.url()) ?? null,
+    repositories: faker.helpers.maybe(() => [
+      { name: faker.commerce.productName(), url: faker.internet.url() },
+    ]) ?? [],
   };
 }
 

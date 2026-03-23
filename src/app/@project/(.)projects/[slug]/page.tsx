@@ -32,7 +32,7 @@ export default async function ProjectOverlayPage({
         }
         content={project.content}
         url={project.url}
-        githubUrl={project.githubUrl}
+        repositories={project.repositories}
       />
     </ProjectOverlayWrapper>
   );

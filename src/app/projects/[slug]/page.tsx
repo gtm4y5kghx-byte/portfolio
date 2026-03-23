@@ -25,7 +25,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         }
         content={project.content}
         url={project.url}
-        githubUrl={project.githubUrl}
+        repositories={project.repositories}
       />
     </div>
   );

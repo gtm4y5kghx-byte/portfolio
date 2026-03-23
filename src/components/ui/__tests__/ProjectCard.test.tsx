@@ -8,6 +8,7 @@ const defaultProps = {
   title: faker.commerce.productName(),
   slug: faker.helpers.slugify(faker.commerce.productName()).toLowerCase(),
   subtitle: faker.commerce.productDescription(),
+  displayMode: 'image' as const,
   imageUrl: faker.image.url(),
 };
 
@@ -42,9 +43,12 @@ describe('ProjectCard', () => {
     expect(img).toHaveAttribute('src', defaultProps.imageUrl);
   });
 
-  it('does not render an image when imageUrl is not provided', () => {
+  it('renders gradient background when displayMode is textOnly', () => {
     const { imageUrl, ...rest } = defaultProps;
-    const { container } = render(<ProjectCard {...rest} />);
+    const { container } = render(
+      <ProjectCard {...rest} displayMode="textOnly" />,
+    );
     expect(container.querySelector('img')).not.toBeInTheDocument();
+    expect(container.querySelector('.bg-linear-to-br')).toBeInTheDocument();
   });
 });

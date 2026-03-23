@@ -24,11 +24,33 @@ export const project = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'displayMode',
+      title: 'Display Mode',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Image', value: 'image' },
+          { title: 'Text Only', value: 'textOnly' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'image',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'projectImage',
       title: 'Project Image',
       type: 'image',
       options: { hotspot: true },
-      validation: (rule) => rule.required(),
+      hidden: ({ parent }) => parent?.displayMode === 'textOnly',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          const parent = context.parent as { displayMode?: string };
+          if (parent?.displayMode === 'image' && !value) {
+            return 'Image is required when display mode is "Image"';
+          }
+          return true;
+        }),
     }),
     defineField({
       name: 'content',
@@ -43,10 +65,31 @@ export const project = defineType({
       description: 'Live project URL',
     }),
     defineField({
-      name: 'githubUrl',
-      title: 'GitHub URL',
-      type: 'url',
-      description: 'Source code repository',
+      name: 'repositories',
+      title: 'Source Code',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: 'name', subtitle: 'url' },
+          },
+        },
+      ],
     }),
   ],
   preview: {

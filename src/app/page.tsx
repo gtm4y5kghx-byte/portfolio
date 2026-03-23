@@ -67,7 +67,7 @@ export default async function Home() {
           >
             <ScrollReveal>
               <SectionHeader
-                text="Recent Projects"
+                text="Projects"
                 id="projects-heading"
                 as="h2"
               />
@@ -81,6 +81,7 @@ export default async function Home() {
                     title={project.title}
                     slug={project.slug.current}
                     subtitle={project.subtitle}
+                    displayMode={project.displayMode}
                     imageUrl={
                       project.projectImage
                         ? urlFor(project.projectImage)

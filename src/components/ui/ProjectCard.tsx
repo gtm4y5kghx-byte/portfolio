@@ -4,6 +4,7 @@ interface ProjectCardProps {
   title: string;
   slug: string;
   subtitle?: string;
+  displayMode: 'image' | 'textOnly';
   imageUrl?: string;
 }
 
@@ -11,6 +12,7 @@ export default function ProjectCard({
   title,
   slug,
   subtitle,
+  displayMode,
   imageUrl,
 }: ProjectCardProps) {
   return (
@@ -18,13 +20,16 @@ export default function ProjectCard({
       href={`/projects/${slug}`}
       className="group relative overflow-hidden rounded-lg shadow-lg"
     >
-      {imageUrl && (
+      {displayMode !== 'textOnly' && imageUrl ? (
         <img
           src={imageUrl}
           alt=""
           className="duration-default aspect-video w-full object-cover transition-transform group-hover:scale-105"
         />
+      ) : (
+        <div className="from-primary/40 to-surface aspect-video w-full bg-linear-to-br" />
       )}
+
       <div className="bg-canvas/70 hover-target duration-default group-hover:bg-primary absolute inset-x-0 bottom-0 px-4 transition-colors">
         {/* Background sweep */}
         <div className="bg-primary duration-default absolute inset-0 -translate-x-full transition-transform group-hover:translate-x-0" />

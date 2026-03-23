@@ -30,7 +30,7 @@ export const NAV_ITEMS: NavItem[] = [
 export default function Nav() {
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
     e.preventDefault();
-    gsap.to(window, { duration: 0.8, scrollTo: href, ease: 'power2.inOut' });
+    gsap.to(window, { duration: 0.8, scrollTo: { y: href, offsetY: 80 }, ease: 'power2.inOut' });
   }
 
   return (

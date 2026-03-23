@@ -132,7 +132,8 @@ export type Project = {
   title: string;
   slug: Slug;
   subtitle?: string;
-  projectImage: {
+  displayMode: 'image' | 'textOnly';
+  projectImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -158,7 +159,11 @@ export type Project = {
     _key: string;
   }>;
   url?: string;
-  githubUrl?: string;
+  repositories?: Array<{
+    name: string;
+    url: string;
+    _key: string;
+  }>;
 };
 
 export type Slug = {
@@ -367,7 +372,8 @@ export type PROJECTS_QUERY_RESULT = Array<{
   title: string;
   slug: Slug;
   subtitle?: string;
-  projectImage: {
+  displayMode: 'image' | 'textOnly';
+  projectImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -393,7 +399,11 @@ export type PROJECTS_QUERY_RESULT = Array<{
     _key: string;
   }>;
   url?: string;
-  githubUrl?: string;
+  repositories?: Array<{
+    name: string;
+    url: string;
+    _key: string;
+  }>;
 }>;
 
 // Source: src/lib/sanity/queries.ts
@@ -458,6 +468,52 @@ export type TESTIMONIALS_QUERY_RESULT = Array<{
 }>;
 
 // Source: src/lib/sanity/queries.ts
+// Variable: PROJECT_BY_SLUG_QUERY
+// Query: *[_type == "project" && slug.current == $slug][0]
+export type PROJECT_BY_SLUG_QUERY_RESULT = {
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  subtitle?: string;
+  displayMode: 'image' | 'textOnly';
+  projectImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+  url?: string;
+  repositories?: Array<{
+    name: string;
+    url: string;
+    _key: string;
+  }>;
+} | null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: SETTINGS_QUERY
 // Query: *[_type == "settings"][0]
 export type SETTINGS_QUERY_RESULT = {
@@ -504,6 +560,7 @@ declare module '@sanity/client' {
     '*[_type == "experience"]': EXPERIENCES_QUERY_RESULT;
     '*[_type == "technology"]': TECHNOLOGIES_QUERY_RESULT;
     '*[_type == "testimonial"] | order(orderRank asc)': TESTIMONIALS_QUERY_RESULT;
+    '*[_type == "project" && slug.current == $slug][0]': PROJECT_BY_SLUG_QUERY_RESULT;
     '*[_type == "settings"][0]': SETTINGS_QUERY_RESULT;
   }
 }

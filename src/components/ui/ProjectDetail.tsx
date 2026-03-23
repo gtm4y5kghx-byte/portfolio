@@ -2,13 +2,18 @@ import RichText, { type PortableTextValue } from './RichText';
 import { SOCIAL_ICONS } from '@/lib/icons';
 import ScrollReveal from '@/components/animations/SrollReveal';
 
+interface Repository {
+  name: string;
+  url: string;
+}
+
 interface ProjectDetailProps {
   title: string;
   subtitle?: string;
   imageUrl?: string;
   content?: PortableTextValue;
   url?: string;
-  githubUrl?: string;
+  repositories?: Repository[];
 }
 
 export default function ProjectDetail({
@@ -17,7 +22,7 @@ export default function ProjectDetail({
   imageUrl,
   content,
   url,
-  githubUrl,
+  repositories,
 }: ProjectDetailProps) {
   return (
     <article className="flex flex-col gap-8">
@@ -38,8 +43,8 @@ export default function ProjectDetail({
             )}
           </div>
 
-          {(url || githubUrl) && (
-            <div className="flex gap-3">
+          {(url || repositories?.length) && (
+            <div className="flex flex-wrap gap-3">
               {url && (
                 <a
                   href={url}
@@ -64,9 +69,10 @@ export default function ProjectDetail({
                   Visit Site
                 </a>
               )}
-              {githubUrl && (
+              {repositories?.map((repo) => (
                 <a
-                  href={githubUrl}
+                  key={repo.url}
+                  href={repo.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="duration-default inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
@@ -79,9 +85,9 @@ export default function ProjectDetail({
                   >
                     <path d={SOCIAL_ICONS.github.path} />
                   </svg>
-                  Source Code
+                  {repo.name}
                 </a>
-              )}
+              ))}
             </div>
           )}
 
