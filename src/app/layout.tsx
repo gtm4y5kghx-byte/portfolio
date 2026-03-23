@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
 
   return {
+    metadataBase: new URL('https://www.jasenmp.com'),
     title: settings?.siteTitle ?? 'Portfolio',
     description: settings?.seoDescription,
     icons: {
@@ -22,9 +23,17 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       apple: '/apple-touch-icon.png',
     },
-    openGraph: settings?.seoImage
-      ? { images: [{ url: urlFor(settings.seoImage).url() }] }
-      : undefined,
+    openGraph: {
+      type: 'website',
+      siteName: settings?.siteTitle ?? 'Portfolio',
+      ...(settings?.seoImage
+        ? { images: [{ url: urlFor(settings.seoImage).url() }] }
+        : {}),
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 
