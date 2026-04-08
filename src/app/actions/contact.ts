@@ -71,6 +71,7 @@ async function sendEmail(
     replyTo: email,
     text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
   });
+  if (error) console.log('Resend error:', error);
   return !error;
 }
 
